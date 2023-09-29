@@ -1,0 +1,36 @@
+@import '../../../../../shared/shared_variable.scss';
+.title{
+  color: #32236F;
+  font-weight: initial;
+}
+.icon-box.icon-box-lg {
+  height: 65px;
+  width: 65px;
+  line-height: 65px;
+}
+[class^="icon-"], [class*=" icon-"] {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+svg path{
+  fill: #4527a0;
+}
+.icon-box {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 0.75rem;
+}
+.card-menu span{
+  font-size: 15px;
+  color: grey;
+}

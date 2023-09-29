@@ -1,0 +1,96 @@
+@import '../../../../../app/shared/shared_variable.scss';
+
+.title{
+  color: $dark-purple;
+  font-size: 16px;
+}
+td{
+  font-size: 14px;
+}
+
+.fa-check-circle,.fa-times-circle{
+  font-size: 18px;
+}
+
+
+.history{
+	position:relative;
+	margin-bottom:24px;
+
+	&:before{
+		  top: 11px;
+			bottom: 0;
+			position: absolute;
+			content: " ";
+			width: 3px;
+			left: 23px;
+			height: 86px;
+			background: #ebeef6;
+	}
+	.history-dot{
+	    border-radius: 50%;
+		height: 14px;
+		left: 18px;
+		position: absolute;
+		top: 10px;
+		width: 14px;
+		background: $dark-purple;
+		//padding: 4px;
+		box-shadow: 0px 4px 2px 0px #00000005;
+
+	}
+  a{
+    color: $dark-purple !important;
+    text-decoration: none;
+  }
+	.history-deatils{
+		margin-left: 39px;
+		display: inline-block;
+	}
+	&:last-child{
+		&:before{
+			display:none;
+		}
+	}
+
+}
+.text-history{
+  font-size: 12px;
+  color: gray;
+}
+
+.history_p{
+  margin: 0 0 -7px !important;
+  font-size: 15px;
+}
+.tenant_title {
+  color: #32236F;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.overlay{
+position: absolute;
+background: rgba(26, 7, 48, 0.5);
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+.reserve_img{
+  height: 218px;
+}
+.welcomeMsg{
+  color: white;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.fa-utensils{
+  font-size:15px;
+}
+.menu_url{
+  text-decoration: none;
+}

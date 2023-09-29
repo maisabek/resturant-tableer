@@ -1,0 +1,127 @@
+<section class="newsletter_section">
+  <div class="container">
+    <div class="newsletter_box">
+      <div class="section_title" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
+        <h2>
+          {{'portal.Subscribe_newsletter' | translate}}
+        </h2>
+        <p>
+          {{'portal.Be_the_first_to_recieve_all_latest_post_in_your_inbox' | translate}}
+        </p>
+      </div>
+      <form action="" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="{{'portal.Enter_your_email' | translate}}">
+        </div>
+        <div class="form-group">
+          <button class="btn">
+            {{'portal.SUBMIT' | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="top_footer" id="contact">
+    <div class="container">
+      <div class="row">
+        <span class="banner_shape1"> <img src="assets/images/portal/banner-shape1.png" alt="image"> </span>
+        <span class="banner_shape2"> <img src="assets/images/portal/banner-shape2.png" alt="image"> </span>
+        <span class="banner_shape3"> <img src="assets/images/portal/banner-shape3.png" alt="image"> </span>
+        <!-- footer link 1 -->
+        <div class="col-lg-3 col-md-6 col-12">
+          <div class="abt_side">
+            <div class="logo"> <img src="assets/images/portal/footer_logo.png" alt="image"></div>
+
+
+          </div>
+        </div>
+
+        <!-- footer link 2 -->
+        <div class="col-lg-3 col-md-6 col-12">
+          <div class="links">
+            <ul>
+              <li class="nav-item">
+                <a class="nav-link" fragment="features"  (click)="navigateToSection('features')">
+                  {{'portal.Features'|translate}}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/how_it_work">
+                {{'portal.howItWork'|translate}}
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- footer link 3 -->
+        <div class="col-lg-3 col-md-6 col-12">
+          <div class="links">
+            <ul>
+              <li class="nav-item">
+                <a class="nav-link" fragment="pricing"  (click)="navigateToSection('pricing')">
+                  {{'portal.pricing'|translate}}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/contact">
+                  {{'portal.contactUs'|translate}}
+               </a>
+             </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- footer link 4 -->
+        <div class="col-lg-3 col-md-6 col-12">
+          <div class="abt_side">
+
+
+            <ul class="social_media">
+              <li><a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a></li>
+              <li><a href="#">
+                <i class="fab fa-twitter"></i>
+              </a></li>
+              <li><a href="#">
+                <i class="fab fa-instagram"></i>
+              </a></li>
+              <li><a href="#">
+                <i class="fab fa-pinterest-p"></i>
+              </a></li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- row end -->
+    </div>
+    <!-- container end -->
+  </div>
+
+  <!-- last footer -->
+  <div class="bottom_footer">
+    <!-- container start -->
+    <div class="container">
+      <!-- row start -->
+      <div class="row">
+        <div class="col-md-12">
+          <p>© {{'general.Copyrights_2023_All_rights_reserved_tableers' | translate}}</p>
+        </div>
+
+      </div>
+      <!-- row end -->
+    </div>
+    <!-- container end -->
+  </div>
+
+  <!-- go top button -->
+  <div class="go_top scrollToTop" *ngIf="isShow" (click)="gotoTop()">
+    <span><img src="assets/images/portal/go_top.png" alt="image"></span>
+  </div>
+</footer>

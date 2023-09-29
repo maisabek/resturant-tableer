@@ -1,0 +1,19 @@
+@import '../../../../../shared/shared_variable.scss';
+
+.btn-decrement:hover,.btn-increment:hover{
+  background-color: $ColorSecondary;
+  color: white;
+}
+
+.btn-minus,
+.btn-plus
+{
+ border: 1px solid rgb(174, 171, 171);
+}
+.label-font-size{
+  font-size: 14px;
+}
+
+.text-fs{
+  font-size: 13px;
+}

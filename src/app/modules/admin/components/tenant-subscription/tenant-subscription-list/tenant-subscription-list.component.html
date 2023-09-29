@@ -1,0 +1,22 @@
+<app-preloader></app-preloader>
+
+<div class="row bg-white py-3">
+  <div class="col-md-12 d-flex justify-content-between align-items-center">
+    <h5 class="title mx-3 mt-3">
+      {{'admin.Tenant_subscription' | translate}}
+    </h5>
+  </div>
+  <div class="col-md-12 bg-white py-4 px-4 rounded">
+    <app-datatable
+      [service]="_TenantService"
+      [columns]="columns"
+      [method]="'listTenantSubscribtionTable'"
+      [UpdateData]="{ isExist: true }"
+      [DeleteIsExist]="true"
+      (event)="eventHandler($event)">
+    </app-datatable>
+  </div>
+</div>
+
+
+

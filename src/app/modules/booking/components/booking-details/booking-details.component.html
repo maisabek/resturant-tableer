@@ -1,0 +1,181 @@
+<app-preloader></app-preloader>
+<div class="main"
+[ngStyle]="{background : TenantDetails?.bannerImage  ?  'url('+ bannerImage + ')' : 'gray'}">
+  <section class="signup">
+    <div class="rest-cont">
+      <div class="logo largeLogo">
+        <img src="http://209.126.85.136/tableers/uploads/{{TenantDetails?.logoImage}}" *ngIf="TenantDetails?.logoImage != ''">
+        <img src="assets/images/default-vector-img.jpg" *ngIf="TenantDetails?.logoImage == ''">
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="signup-content">
+        <form method="POST" id="signup-form"
+        [formGroup]="reservationForm"
+        class="signup-form" (ngSubmit)="AddReservation()">
+
+
+          <h2 class="form-title"  [ngStyle]="{color: secondaryColor != '' ? secondaryColor: 'black'}">
+            {{TenantDetails?.title}}
+          </h2>
+
+          <div class="col-md-12">
+            <mat-label>
+              {{'booking.Choose_Branch' | translate}}
+            </mat-label>
+            <mat-form-field class="w-100 no-hint-container">
+              <mat-select
+              formControlName="branchId"
+              (selectionChange)="selectBranch($event)">
+                <mat-option *ngFor="let item of Branches" [value]="item.id">
+                  {{item.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <span *ngIf="reservationForm.get('branchId')?.invalid && reservationForm.get('branchId')?.touched || IsValid">
+              <span class="text-danger text-validate" *ngIf="reservationForm.get('branchId')?.hasError('required')">
+                {{'booking.branchId_Is_Required' | translate}}*
+              </span>
+            </span>
+          </div>
+
+          <div class="col-md-12 mt-3 w-100">
+            <div class="mx-0 mb-0 w-100 justify-content-sm-center justify-content-start px-1">
+              <mat-label>
+                {{'booking.Pick_Date' | translate}}
+              </mat-label>
+              <mat-form-field class="w-100">
+                <input matInput [matDatepicker]="Pick_DatePicker"
+                  [matDatepickerFilter]="myFilter"
+                  formControlName="dateTimeSlot"
+                  (dateChange)="valueChanged($event)">
+                <mat-datepicker-toggle matIconSuffix [for]="Pick_DatePicker">
+                </mat-datepicker-toggle>
+                <mat-datepicker #Pick_DatePicker></mat-datepicker>
+              </mat-form-field>
+
+              <span *ngIf="reservationForm.get('dateTimeSlot')?.invalid && reservationForm.get('dateTimeSlot')?.touched || IsValid">
+                <span class="text-danger text-validate" *ngIf="reservationForm.get('dateTimeSlot')?.hasError('required')">
+                  {{'booking.Date_Is_Required' | translate}}*
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <ng-container *ngIf="availabelSlots?.length;else AvailableHoursRef">
+              <div class="col-md-12 mt-3">
+                <div class="form-group mt-3">
+                  <label>
+                    {{'booking.Guests' | translate}}
+                  </label>
+                  <div class="input-group d-flex flex-nowrap">
+                    <button style="min-width: 2.5rem" (click)="decrement()" class="btn btn-decrement btn-minus"
+                      type="button">
+                      <strong>−</strong>
+                    </button>
+
+                    <input type="number" inputmode="decimal" name="count"
+                      [(ngModel)]="count" formControlName="partySize"
+                      value="1" class="form-control form-input text-center py-4">
+
+                    <button style="min-width: 2.5rem" (click)="increment()"
+                      class="btn btn-increment btn-plus"
+                      type="button">
+                      <strong>+</strong>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <mat-tab-group (selectedTabChange)="onTabChanged($event);">
+                  <mat-tab class="mt-4 w-50" #availableRef>
+                    <ng-template mat-tab-label>
+                      {{'admin.Regular' | translate}}
+                    </ng-template>
+                    <div class="form-group mt-4">
+                      <label>
+                        {{'booking.AvailableTime' | translate}}
+                      </label>
+                        <div class="row text-center mx-0">
+                          <div class="col-md-2 col-4 my-1 px-1"
+                          *ngFor="let item of availabelSlots">
+                            <div class="cell py-1 AvailableTime" id="{{item}}"
+                            (click)="selectAvailabelSlots(item)">
+                              {{item}}
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
+                  </mat-tab>
+
+                  <mat-tab class="mt-4 w-50" #watitingRef>
+                    <ng-template mat-tab-label>
+                      {{'admin.Waiting' | translate}}
+                    </ng-template>
+                    <div class="col-md-12 mt-4">
+                      <div class="form-group">
+                        <label>
+                          {{'booking.Waiting_Available_Time' | translate}}
+                        </label>
+                          <div class="row text-center mx-0 mt-2">
+                            <div class="col-md-2 col-4 my-1 px-1"
+                               *ngFor="let item of waitingAvailabelSlots">
+                              <div class="cell py-1 waitingAvailabelSlots" id="{{item}}" (click)="selectWaitingAvailabelSlots(item)">
+                                {{item}}
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </mat-tab>
+                </mat-tab-group>
+              </div>
+
+              <div class="col-md-12 mt-5">
+                <div class="form-group">
+                  <label>
+                    {{'booking.special_request' | translate}}
+                  </label>
+                  <div class="w-100">
+                    <ckeditor [editor]="Editor" formControlName="specialRequest"></ckeditor>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 mt-3">
+                <button class="text-white btn form-submit d-block h8"
+                type="submit" [ngStyle]="{background : primaryColor != '' ? primaryColor : 'linear-gradient(to left, #B760EA, #B760EA)'}">
+                    {{'booking.RESERVE' | translate}}
+                </button>
+              </div>
+          </ng-container>
+
+
+        </form>
+
+      </div>
+    </div>
+    <div class="tableer-footer">
+      <p class="tableer-footer-p">
+        {{'general.Powered_by' | translate}} :
+      </p>
+      <a href="https://tableer.co" class="tableer-footer-link">
+        <img src="assets/images/booking/tableer-footer-logo.png" alt="vendor-logo">
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<ng-template #AvailableHoursRef>
+  <div class="col-md-12 text-center mt-4 mb-4" *ngIf="availableTimeLoading">
+    <p class="text-muted">
+      {{'booking.There_Are_No_Available_Hours' | translate}}
+    </p>
+  </div>
+</ng-template>
+

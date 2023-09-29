@@ -1,0 +1,288 @@
+<app-preloader></app-preloader>
+<section>
+  <form class="example-form" id="tenantForm" [formGroup]="newTenantForm" (ngSubmit)="EditTenant()">
+    <div class="row bg-white p-3">
+      <div class="col-md-12 d-flex justify-content-between align-items-center mt-3 mb-1">
+          <p class="text-primary h5">{{'admin.tenant' | translate}}</p>
+            <a class="btn btn-info" routerLink="/admin/tenant_list">
+              {{'general.back' | translate}}
+            </a>
+      </div>
+
+      <div class="col-md-6 mb-3 mt-2">
+        <h4 class="title">{{'admin.Logo_Image' | translate}}</h4>
+        <div id="profile-image-uploader-container" class="image-uploader-container">
+          <img [src]="croppedImg" width="100%" height="100%">
+          <div class="CroppedLogo_container">
+            <i class="far fa-times-circle text-danger cursor-pointer" (click)="DeleteLogoImg()"></i>
+          </div>
+          <div class="overlay text-center">
+            <div class="cursor-pointer title d-flex justify-content-center align-items-center w-100 h-100">
+              {{'general.ClickToChangeImage' | translate}}
+            </div>
+            <input type="file" accept="image/*" name="image" class="image" id="upload_image_profileImage"
+              (change)="handleLogoImageUpload($event)">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3 mt-2">
+        <h4 class="title mb-2">
+          {{'admin.Banner_Image' | translate}}
+        </h4>
+        <div id="profile-image-uploader-container" class="image-uploader-container">
+          <img [src]="BannerImage" width="100%" height="100%">
+          <div class="BannerLogo_container">
+            <i class="far fa-times-circle text-danger cursor-pointer" (click)="DeleteBannerImg()"></i>
+          </div>
+          <div class="overlay text-center">
+            <div class="cursor-pointer title d-flex justify-content-center align-items-center w-100 h-100">
+              {{'general.ClickToChangeImage' | translate}}
+            </div>
+            <input type="file" name="image" class="image" id="upload_image_profileImage"
+              (change)="handleBannerImageUpload($event)">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <mat-label>
+          {{'admin.Title' | translate}}
+        </mat-label>
+        <mat-form-field class="example-full-width w-100">
+          <input type="text" matInput formControlName="title">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <mat-label>
+          {{'admin.welcomeMsg' | translate}}
+        </mat-label>
+        <mat-form-field class="example-full-width w-100">
+          <input type="text" matInput formControlName="welcomeMsg">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <mat-label>
+          {{'admin.primaryColor' | translate}}
+        </mat-label>
+        <mat-form-field class="example-full-width w-100">
+          <input type="color" matInput formControlName="primaryColor">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <mat-label>
+          {{'admin.secondaryColor' | translate}}
+        </mat-label>
+        <mat-form-field class="example-full-width w-100">
+          <input type="color" matInput formControlName="secondaryColor">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-label>
+          {{'admin.country' | translate}}
+        </mat-label>
+        <mat-form-field class="w-100 no-hint-container">
+          <mat-select formControlName="countryId"
+            [ngClass]="{'is-invalid border-danger':isValid && newTenantForm.get('countryId')?.hasError('required')}">
+            <mat-option *ngFor="let item of AllCountries" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6">
+        <mat-label>
+          {{'admin.menu' | translate}}
+        </mat-label>
+        <mat-form-field class="example-full-width w-100">
+          <input type="text" matInput formControlName="menuUrl">
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex w-100 justify-content-end mt-4">
+        <button class="btn btn-info mx-2" type="submit">
+          {{'general.save' | translate}}
+          <i class="fas fa-spin fa-spinner fa-1x" *ngIf="isLoading"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row bg-white align-items-baseline p-3 mt-5">
+    <div class="col-md-12 d-flex justify-content-between align-items-center mb-4 flex-wrap">
+      <h4 class="title">
+        {{'admin.Tenant_Subscription' | translate}}
+      </h4>
+      <button class="btn btn-info" (click)="OpenTenantDialog()">
+        {{'admin.Add_Tenant_Subscription' | translate}}
+      </button>
+    </div>
+
+    <ng-container *ngIf="AllTenantSubscriptions.length;else temlateRef">
+      <ng-container *ngIf="loadingTenant == false;else loading">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="title">{{'admin.numberOfBranches' | translate}}</th>
+              <th scope="col" class="title">{{'admin.numberOfUsers' | translate}}</th>
+              <th scope="col" class="title">{{'admin.numberOfMonths' | translate}}</th>
+              <th scope="col" class="title">{{'admin.amount' | translate}}</th>
+              <th scope="col" class="title">{{'general.actions' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of AllTenantSubscriptions;let i=index">
+              <td>{{item.numberOfBranches}}</td>
+              <td>{{item.numberOfUsers}}</td>
+              <td>{{item.numberOfMonths}}</td>
+              <td>{{item.amount}}</td>
+              <td class="d-flex justify-content-center">
+                <div class="dropdown dropdown-inline">
+                  <button type="button" class="btn text-primary  btn-icon btn-sm" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <div class="dropdown-menu shadow-sm">
+                    <a class="dropdown-item cursor-pointer" (click)="GetTenantSubscriptionById(item.id)">
+                      <i class="fa fa-edit mx-1 text-primary"></i>
+                      {{'general.update' | translate}}
+                    </a>
+                    <a class="dropdown-item cursor-pointer" (click)="DeleteTenantSubscription(item.id)">
+                      <i class="fa fa-times mx-2 text-danger"></i>
+                      {{'general.delete' | translate}}
+                    </a>
+
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+    </ng-container>
+
+  </div>
+</section>
+
+
+<ng-template #cropper>
+  <app-image-cropper [src]="imgsrc" (saveEvent)="LogoImgHandler($event)">
+  </app-image-cropper>
+</ng-template>
+
+
+
+<ng-template #BannerImageCropper>
+  <app-image-cropper [src]="imgsrc" (saveEvent)="BannerImageHandler($event)">
+  </app-image-cropper>
+</ng-template>
+
+<ng-template #addTenantSubscriptionRef>
+  <div class="d-flex justify-content-between w-100 align-items-center">
+    <h2 mat-dialog-title>
+      {{'admin.Add_Tenant_Subscription' | translate}}
+    </h2>
+  </div>
+  <mat-dialog-content>
+    <form id="AddTenantSubscription" [formGroup]="TenantSubscriptionForm" (ngSubmit)="AddOrEditTenantSubscription()">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-label>
+            {{'admin.numberOfBranches' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100">
+
+            <input matInput type="number" formControlName="numberOfBranches">
+          </mat-form-field>
+          <span class="d-flex justify-content-end"
+            *ngIf="TenantSubscriptionForm.get('numberOfBranches')?.invalid && TenantSubscriptionForm.get('numberOfBranches')?.touched || TenantSubscriptionIsValid">
+            <span class="text-danger text-validate"
+              *ngIf="TenantSubscriptionForm.get('numberOfBranches')?.hasError('required')">
+              {{'admin.numberOfBranches_required' | translate}}*
+            </span>
+          </span>
+        </div>
+
+        <div class="col-md-12 mt-3">
+          <mat-label>
+            {{'admin.numberOfUsers' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100">
+            <input matInput type="number" formControlName="numberOfUsers">
+          </mat-form-field>
+          <span class="d-flex justify-content-end"
+            *ngIf="TenantSubscriptionForm.get('numberOfUsers')?.invalid && TenantSubscriptionForm.get('numberOfUsers')?.touched || TenantSubscriptionIsValid">
+            <span class="text-danger text-validate"
+              *ngIf="TenantSubscriptionForm.get('numberOfUsers')?.hasError('required')">
+              {{'admin.numberOfUsers_required' | translate}}*
+            </span>
+          </span>
+        </div>
+
+        <div class="col-md-12 mt-3">
+          <mat-label>
+            {{'admin.numberOfMonths' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100">
+            <input matInput type="number" formControlName="numberOfMonths">
+          </mat-form-field>
+          <span class="d-flex justify-content-end"
+            *ngIf="TenantSubscriptionForm.get('numberOfMonths')?.invalid && TenantSubscriptionForm.get('numberOfMonths')?.touched || TenantSubscriptionIsValid">
+            <span class="text-danger text-validate"
+              *ngIf="TenantSubscriptionForm.get('numberOfMonths')?.hasError('required')">
+              {{'admin.numberOfMonths_required' | translate}}*
+            </span>
+          </span>
+        </div>
+
+
+        <div class="col-md-12 mt-3">
+          <mat-label>
+            {{'admin.amount' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100">
+            <input matInput type="number" formControlName="amount">
+          </mat-form-field>
+          <span class="d-flex justify-content-end"
+            *ngIf="TenantSubscriptionForm.get('amount')?.invalid && TenantSubscriptionForm.get('amount')?.touched || TenantSubscriptionIsValid">
+            <span class="text-danger text-validate" *ngIf="TenantSubscriptionForm.get('amount')?.hasError('required')">
+              {{'admin.amount_required' | translate}}*
+            </span>
+          </span>
+        </div>
+
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="d-flex justify-content-end w-100">
+      <button class="btn btn-info" form="AddTenantSubscription" type="submit">
+        {{'general.save' | translate}}
+      </button>
+      <button class="btn btn-danger mx-1" mat-dialog-close>
+        {{'general.Cancel' | translate}}
+      </button>
+    </div>
+  </mat-dialog-actions>
+</ng-template>
+
+
+<ng-template #loading>
+  <div class="d-flex w-100 justify-content-center">
+    <app-loading></app-loading>
+  </div>
+</ng-template>
+
+<ng-template #temlateRef>
+  <div class="w-100 d-flex justify-content-center">
+    <p>
+      {{'admin.Attention_Must_Add_Tenant_Subscription_Here' | translate}}
+    </p>
+  </div>
+</ng-template>

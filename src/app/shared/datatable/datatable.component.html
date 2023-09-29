@@ -1,0 +1,104 @@
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  id="ajax-datatables"
+  class="table course-table hover  w-100">
+  <thead class="datatable_header">
+    <tr>
+      <th class="text-center sorting" *ngFor="let column of columns">
+        {{column?.title}}
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <ng-container *ngIf="data$ | async as data;else loading">
+      <tr class="datatable_tr" *ngFor="let item of data ;let i = index">
+        <ng-container *ngFor="let column of columns">
+          <td class="dtr-control text-center"
+            *ngIf="column.data != 'setting' && column.data != 'published' && column.data != 'isActive' &&  column.data != 'endDate' && column.data != 'isDefault' && column.data != 'dateTimeSlot' && column.data != 'isWaiting'">
+            {{item[column.data]}}
+          </td>
+
+          <td class="dtr-control text-center" *ngIf="column.data == 'dateTimeSlot'">
+            {{item[column.data] | date:'d/M/yyy h:m a'}}
+          </td>
+
+          <td class="dtr-control text-center" *ngIf="column.data == 'endDate'">
+            {{item[column.data] | date}}
+          </td>
+
+          <td class="dtr-control text-center" *ngIf="column.data == 'published'">
+            <button type="button" class="btn rounded-clip  btn-icon btn-sm"
+            [ngClass]="{'btn-outline-primary': item.published ,'btn-outline-danger': !item.published}"
+            (click)="TogglePublished(!item.published,item.id)">
+            <ng-container *ngIf="item.published">Published</ng-container>
+            <ng-container *ngIf="!item.published">Not Published</ng-container>
+          </button>
+          </td>
+          <td class="dtr-control text-center" *ngIf="column.data == 'isWaiting'">
+            <i class="dtr-control far fa-check-circle text-success" *ngIf="item.isWaiting"></i>
+            <i class="dtr-control far fa-times-circle text-danger text-center" *ngIf="item.isWaiting == false"></i>
+
+          </td>
+
+          <td class="dtr-control text-center" *ngIf="column.data == 'isActive'">
+
+            <button type="button" class="btn rounded-clip  btn-icon btn-sm"
+              [ngClass]="{'btn-outline-primary': item.isActive , 'btn-outline-danger': !item.isActive}"
+              (click)="ToggleActive(!item.isActive,item.id)">
+              <ng-container *ngIf="item.isActive">Active</ng-container>
+              <ng-container *ngIf="!item.isActive">Not Active</ng-container>
+            </button>
+          </td>
+
+          <td class="text-center" *ngIf="column.data == 'isDefault'">
+            <ng-container *ngIf="!item.isDefault == true">
+            <button class="btn" (click)="ToggleDefault(!item.isDefault,item.id)">
+              <i class="far fa-times-circle text-danger" *ngIf="!item.isDefault"></i>
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="!item.isDefault == false">
+            <button class="btn">
+              <i class="far fa-check-circle text-success" *ngIf="item.isDefault"></i>
+            </button>
+          </ng-container>
+
+          </td>
+
+          <td class="text-center" *ngIf="column.data == 'setting'">
+            <div class="dropdown dropdown-inline">
+              <button type="button" class="btn text-primary  btn-icon btn-sm" data-toggle="dropdown"
+
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-h"></i>
+              </button>
+              <div class="dropdown-menu shadow-sm">
+
+                <a class="dropdown-item cursor-pointer" (click)="update(item.id)" *ngIf="UpdateData?.isExist">
+                  <i class="fa fa-edit mx-1 text-primary"></i>
+                  {{'general.update' | translate}}
+                </a>
+                <a class="dropdown-item cursor-pointer" (click)="delete(item.id)" *ngIf="DeleteIsExist">
+                  <i class="fa fa-times mx-2 text-danger"></i>
+                  {{'general.delete' | translate}}
+                </a>
+                <a class="dropdown-item cursor-pointer" (click)="details(item.id)" *ngIf="DetailsIsExist">
+                  <i class="fas fa-info-circle"></i>
+                  {{'general.details' | translate}}
+                </a>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<ng-template #loading>
+  <div class="d-flex w-100 justify-content-center align-items-center">
+    <!-- <app-loading></app-loading> -->
+  </div>
+</ng-template>

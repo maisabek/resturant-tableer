@@ -1,0 +1,107 @@
+@import '../../../../../shared/shared_variable.scss';
+
+#profile-image-uploader-container {
+  width: 162px;
+  height: 104px;
+  position: relative;
+}
+
+#preview_profileImage {
+  overflow: hidden;
+  width: 160px !important;
+  height: 160px;
+  margin: 10px;
+  border: 1px solid red;
+}
+
+.Logo_Img {
+  width: 160px !important;
+  height: 160px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  height: 80%;
+  transition: .5s ease;
+  width: 100%;
+  opacity: 0;
+
+  .title {
+    color: #374557;
+    white-space: nowrap;
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-weight: 500;
+    padding: 10px !important;
+  }
+}
+
+#upload_image_profileImage {
+  position: absolute;
+  top: 0px;
+  left: -135px;
+  bottom: 1px;
+  cursor: pointer;
+  opacity: 0;
+
+}
+
+.image-uploader-container:hover .overlay {
+  opacity: 1;
+}
+
+
+.title {
+  color: #374557;
+  white-space: nowrap;
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  padding: 10px !important;
+}
+
+
+.BannerLogo_container,
+.CroppedLogo_container {
+  position: absolute;
+  top: -9px;
+  left: -11px;
+}
+
+.fa-times-circle {
+  font-size: 22px;
+}
+
+.dropdown-item,
+.fa-info-circl,
+.fa-edit {
+  cursor: pointer;
+  color: gray;
+  font-size: 14px;
+
+}
+
+.dropdown-menu {
+  background-color: white !important;
+  border: none;
+}
+
+.dropdown-item.active,
+.dropdown-item:active,
+.dropdown-item:hover,
+.fa-info-circle:hover,
+.fa-edit:hover {
+  color: $dark-purple !important;
+  text-decoration: none;
+  background-color: white !important;
+}
+
+.table tr,.table td{
+  text-align: center;
+}

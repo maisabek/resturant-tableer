@@ -1,0 +1,76 @@
+<app-preloader></app-preloader>
+
+<div class="row py-3">
+  <div class="col-md-12 d-flex justify-content-end">
+    <button class="btn btn-info" (click)="openDialog()">
+     + {{'admin.Add_Working_System' | translate}}
+    </button>
+
+  </div>
+  <div class="col-md-12 card border-0 py-4 mt-3 px-4 rounded">
+    <app-datatable
+      [service]="_WorkingSystemService"
+      [columns]="columns"
+      [method]="'listDataTable'"
+      [UpdateData]="{ isExist: true }"
+      [DeleteIsExist]="true"
+      (event)="eventHandler($event)">
+    </app-datatable>
+  </div>
+</div>
+
+
+<ng-template #addWorkingSystemDialogRef>
+  <h2 mat-dialog-title>
+    {{'admin.Add_Working_System' | translate}}
+  </h2>
+  <mat-dialog-content class="mat-typography">
+    <form class="example-form" id="WorkingSystemForm" [formGroup]="newWorkingSystemForm"
+      (ngSubmit)="addNewWorkingSystem()">
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <mat-label>
+            {{'admin.Title' | translate}}
+          </mat-label>
+          <mat-form-field class="example-full-width w-100 no-hint-container">
+            <input type="text" matInput formControlName="title"
+            [ngClass]="{'is-invalid border-danger':isValid && newWorkingSystemForm.get('title')?.hasError('required')}">
+          </mat-form-field>
+            <span class="d-flex justify-content-end" *ngIf="newWorkingSystemForm.get('title')?.valid && newWorkingSystemForm.get('title')?.touched || isValid">
+              <span class="text-danger text-fs" *ngIf="newWorkingSystemForm.get('title')?.hasError('required')">
+                {{'admin.Title_is_Required' | translate}} *
+              </span>
+            </span>
+        </div>
+
+
+        <div class="col-md-12">
+          <mat-label>
+            {{'admin.Working_System_Type' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100 no-hint-container">
+            <mat-select formControlName="workingSystemTypeId"
+            [errorStateMatcher]="matcher"
+            [ngClass]="{'is-invalid border-danger':isValid && newWorkingSystemForm.get('workingSystemTypeId')?.hasError('required')}">
+              <mat-option *ngFor="let item of WorkingSystemTypes" [value]="item.id">{{item.title}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <span class="d-flex justify-content-end" *ngIf="newWorkingSystemForm.get('workingSystemTypeId')?.valid && newWorkingSystemForm.get('workingSystemTypeId')?.touched || isValid">
+            <span class="text-danger text-fs" *ngIf="newWorkingSystemForm.get('workingSystemTypeId')?.hasError('required')">
+              {{'admin.Working_System_Type_is_Required' | translate}}*
+            </span>
+          </span>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button class="btn btn-danger" mat-dialog-close>
+      {{'general.Cancel' | translate}}
+    </button>
+    <button class="btn btn-info mx-2" type="submit" form="WorkingSystemForm" cdkFocusInitial>
+      {{'general.save' | translate}}
+    </button>
+  </mat-dialog-actions>
+</ng-template>

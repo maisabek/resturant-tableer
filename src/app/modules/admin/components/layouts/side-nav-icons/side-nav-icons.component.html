@@ -1,0 +1,126 @@
+<div class="sideNav_icons">
+  <ul class="d-flex flex-column align-items-center">
+
+    <li class="btn-group dropright">
+      <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M9.13478 20.7733V17.7156C9.13478 16.9351 9.77217 16.3023 10.5584 16.3023H13.4326C13.8102 16.3023 14.1723 16.4512 14.4393 16.7163C14.7063 16.9813 14.8563 17.3408 14.8563 17.7156V20.7733C14.8539 21.0978 14.9821 21.4099 15.2124 21.6402C15.4427 21.8705 15.756 22 16.0829 22H18.0438C18.9596 22.0024 19.8388 21.6428 20.4872 21.0008C21.1356 20.3588 21.5 19.487 21.5 18.5778V9.86686C21.5 9.13246 21.1721 8.43584 20.6046 7.96467L13.934 2.67587C12.7737 1.74856 11.1111 1.7785 9.98539 2.74698L3.46701 7.96467C2.87274 8.42195 2.51755 9.12064 2.5 9.86686V18.5689C2.5 20.4639 4.04738 22 5.95617 22H7.87229C8.55123 22 9.103 21.4562 9.10792 20.7822L9.13478 20.7733Z"
+            fill="#90959F">
+          </path>
+        </svg>
+      </button>
+      <div class="dropdown-menu dropdown-dashboard-menu">
+        <a  class="dropdown-item" routerLink="/admin">
+          {{'admin.Dashboard' | translate}}
+        </a>
+      </div>
+    </li>
+
+    <li class="btn-group dropright">
+      <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.5">
+            <path
+              d="M9.34933 14.8577C5.38553 14.8577 2 15.47 2 17.9174C2 20.3666 5.364 21 9.34933 21C13.3131 21 16.6987 20.3877 16.6987 17.9404C16.6987 15.4911 13.3347 14.8577 9.34933 14.8577Z"
+              fill="#90959F"></path>
+            <path opacity="0.4"
+              d="M9.34935 12.5248C12.049 12.5248 14.2124 10.4062 14.2124 7.76241C14.2124 5.11865 12.049 3 9.34935 3C6.65072 3 4.48633 5.11865 4.48633 7.76241C4.48633 10.4062 6.65072 12.5248 9.34935 12.5248Z"
+              fill="#90959F"></path>
+            <path opacity="0.4"
+              d="M16.1734 7.84876C16.1734 9.19508 15.7605 10.4513 15.0364 11.4948C14.9611 11.6022 15.0276 11.7468 15.1587 11.7698C15.3407 11.7996 15.5276 11.8178 15.7184 11.8216C17.6167 11.8705 19.3202 10.6736 19.7908 8.87119C20.4885 6.19677 18.4415 3.79544 15.8339 3.79544C15.5511 3.79544 15.2801 3.82419 15.0159 3.87689C14.9797 3.88456 14.9405 3.9018 14.921 3.93247C14.8955 3.97176 14.9141 4.02254 14.9395 4.05608C15.7233 5.13217 16.1734 6.44208 16.1734 7.84876Z"
+              fill="#90959F"></path>
+            <path
+              d="M21.7791 15.1693C21.4318 14.444 20.5932 13.9466 19.3173 13.7023C18.7155 13.5586 17.0854 13.3545 15.5697 13.3832C15.5472 13.3861 15.5345 13.4014 15.5325 13.411C15.5296 13.4263 15.5365 13.4493 15.5658 13.4656C16.2664 13.8048 18.9738 15.2805 18.6333 18.3928C18.6187 18.5289 18.7292 18.6439 18.8672 18.6247C19.5335 18.5318 21.2478 18.1705 21.7791 17.0475C22.0737 16.4534 22.0737 15.7634 21.7791 15.1693Z"
+              fill="#90959F"></path>
+          </g>
+        </svg>
+      </button>
+      <div class="dropdown-menu dropdown-survay-menu">
+          <a class="dropdown-item"  routerLink="/admin/tenant_list">
+            - {{'admin.tenant_list' | translate}}
+          </a>
+
+          <a class="dropdown-item"  routerLink="/admin/tenant_subscription_list">
+            - {{'admin.Tenant_subscription_list' | translate}}
+          </a>
+
+          <a class="dropdown-item"  routerLink="/admin/Manage_support_users_list">
+            - {{'admin.Manage_support_users_list' | translate}}
+          </a>
+      </div>
+    </li>
+
+    <li class="btn-group dropright">
+      <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <svg class="working_system_icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512">
+          <path
+            d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm52.7 93c8.8-15.2 28.3-20.5 43.5-11.7 15.3 8.8 20.5 28.3 11.7 43.6-8.8 15.2-28.3 20.5-43.5 11.7-15.3-8.9-20.5-28.4-11.7-43.6zM87.4 287.9c-17.6 0-31.9-14.3-31.9-31.9 0-17.6 14.3-31.9 31.9-31.9 17.6 0 31.9 14.3 31.9 31.9 0 17.6-14.3 31.9-31.9 31.9zm28.1 3.1c22.3-17.9 22.4-51.9 0-69.9 8.6-32.8 29.1-60.7 56.5-79.1l23.7 39.6c-51.5 36.3-51.5 112.5 0 148.8L172 370c-27.4-18.3-47.8-46.3-56.5-79zm228.7 131.7c-15.3 8.8-34.7 3.6-43.5-11.7-8.8-15.3-3.6-34.8 11.7-43.6 15.2-8.8 34.7-3.6 43.5 11.7 8.8 15.3 3.6 34.8-11.7 43.6zm.3-69.5c-26.7-10.3-56.1 6.6-60.5 35-5.2 1.4-48.9 14.3-96.7-9.4l22.5-40.3c57 26.5 123.4-11.7 128.9-74.4l46.1.7c-2.3 34.5-17.3 65.5-40.3 88.4zm-5.9-105.3c-5.4-62-71.3-101.2-128.9-74.4l-22.5-40.3c47.9-23.7 91.5-10.8 96.7-9.4 4.4 28.3 33.8 45.3 60.5 35 23.1 22.9 38 53.9 40.2 88.5l-46 .6z" />
+        </svg>
+      </button>
+      <div class="dropdown-menu dropdown-working-menu">
+          <a class="dropdown-item" routerLink="/admin/access_tenant_list">
+            - {{'admin.AccessTenant_list' | translate}}
+          </a>
+
+          <a class="dropdown-item" routerLink="/admin/access_branch_list">
+            - {{'admin.AccessBranch_list' | translate}}
+          </a>
+      </div>
+    </li>
+
+
+    <li class="btn-group dropright">
+      <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <svg class="tenant_icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 416 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M207.9 15.2c.8 4.7 16.1 94.5 16.1 128.8 0 52.3-27.8 89.6-68.9 104.6L168 486.7c.7 13.7-10.2 25.3-24 25.3H80c-13.7 0-24.7-11.5-24-25.3l12.9-238.1C27.7 233.6 0 196.2 0 144 0 109.6 15.3 19.9 16.1 15.2 19.3-5.1 61.4-5.4 64 16.3v141.2c1.3 3.4 15.1 3.2 16 0 1.4-25.3 7.9-139.2 8-141.8 3.3-20.8 44.7-20.8 47.9 0 .2 2.7 6.6 116.5 8 141.8.9 3.2 14.8 3.4 16 0V16.3c2.6-21.6 44.8-21.4 48-1.1zm119.2 285.7l-15 185.1c-1.2 14 9.9 26 23.9 26h56c13.3 0 24-10.7 24-24V24c0-13.2-10.7-24-24-24-82.5 0-221.4 178.5-64.9 300.9z"/></svg>
+      </button>
+      <div class="dropdown-menu dropdown-working-menu">
+          <a class="dropdown-item" routerLink="/admin/tenant_data">
+            - {{'admin.tenant_data' | translate}}
+          </a>
+
+          <a class="dropdown-item" routerLink="/admin/branch_list">
+            - {{'admin.branch_list' | translate}}
+          </a>
+
+          <a class="dropdown-item" routerLink="/admin/Branch_manager_list">
+            - {{'admin.Branch_manager_list' | translate}}
+          </a>
+
+          <a class="dropdown-item" routerLink="/admin/Configure_style_list">
+            - {{'admin.Configure_style_list' | translate}}
+          </a>
+
+          <a class="dropdown-item" routerLink="/admin/Configure_POS_list">
+            - {{'admin.Configure_POS_list' | translate}}
+          </a>
+
+          <a class="dropdown-item" routerLink="/admin/Configure_Payment_list">
+            - {{'admin.Configure_Payment_list' | translate}}
+          </a>
+      </div>
+    </li>
+
+
+    <li class="btn-group dropright">
+      <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <svg class="branch_icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M384 144c0-44.2-35.8-80-80-80s-80 35.8-80 80c0 36.4 24.3 67.1 57.5 76.8-.6 16.1-4.2 28.5-11 36.9-15.4 19.2-49.3 22.4-85.2 25.7-28.2 2.6-57.4 5.4-81.3 16.9v-144c32.5-10.2 56-40.5 56-76.3 0-44.2-35.8-80-80-80S0 35.8 0 80c0 35.8 23.5 66.1 56 76.3v199.3C23.5 365.9 0 396.2 0 432c0 44.2 35.8 80 80 80s80-35.8 80-80c0-34-21.2-63.1-51.2-74.6 3.1-5.2 7.8-9.8 14.9-13.4 16.2-8.2 40.4-10.4 66.1-12.8 42.2-3.9 90-8.4 118.2-43.4 14-17.4 21.1-39.8 21.6-67.9 31.6-10.8 54.4-40.7 54.4-75.9zM80 64c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16zm0 384c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zm224-320c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16z"/></svg>
+      </button>
+      <div class="dropdown-menu dropdown-working-menu">
+          <a class="dropdown-item" routerLink="/admin/survay_list">
+            - {{'admin.survay_List' | translate}}
+          </a>
+
+          <a class="dropdown-item" routerLink="/admin/Working_System_List">
+            - {{'admin.Working_System_List' | translate}}
+
+          </a>
+
+          <a class="dropdown-item" routerLink="/admin/survay_result">
+            - {{'admin.Survey_result_list' | translate}}
+          </a>
+
+      </div>
+    </li>
+  </ul>
+</div>

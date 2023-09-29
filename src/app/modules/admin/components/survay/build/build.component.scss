@@ -1,0 +1,113 @@
+@import '../../../../../shared/shared_variable.scss';
+
+.survay_build_title h3,
+.survay_question {
+  color: $dark-purple;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+.questionInput{
+  font-size: 13px;
+}
+
+
+.questionAttention{
+  font-size: 13px;
+  color: gray;
+}
+
+.dropdown_ln{
+  padding: 1px 4px;
+  padding: 6px 10px;
+  background: #7b5cd7;
+  border-radius: 7px;
+  color: white !important;
+}
+
+.modeDropdown{
+  background: #7b5cd7;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  text-decoration: none;
+  background-color: $dark-purple !important;
+  color: white !important;
+}
+.dropdown-item {
+  font-size: 13px;
+  color: white;
+}
+.dropdown-item,.fa-info-circl,
+.fa-edit{
+  cursor: pointer;
+  color: gray;
+  font-size: 14px;
+
+}
+.dropdown-menu{
+  background-color: white !important;
+  border: none;
+}
+.dropdown-item.active, .dropdown-item:active ,.dropdown-item:hover,
+.fa-info-circle:hover,.fa-edit:hover{
+  color: $dark-purple !important;
+  text-decoration: none;
+  background-color: white !important;
+}
+.fa-star,
+.fa-meh-rolling-eyes {
+  color: white;
+  font-size: 12px;
+}
+
+.add_survay_title{
+  color: #32236F;
+}
+.text-initial{
+  text-align: initial;
+}
+
+.title{
+  color: #374557;
+  white-space: nowrap;
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  padding: 10px !important;
+}
+
+.dropdown_ln::before{
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  color: white;
+  content: "\f078";
+  font-family: "Font Awesome 5 Free";
+  font-size: 10px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 900;
+  line-height: 1;
+  position: absolute;
+  text-decoration: inherit;
+  text-transform: none;
+  transition: all 0.15s ease;
+  right: 17px;
+  top: 10px;
+}
+
+.dropdown_ln{
+  width: 79px;
+  text-align: start;
+}
+
+.fa-check-circle,.fa-times-circle{
+  font-size: 22px;
+}

@@ -1,0 +1,28 @@
+
+<div class="d-flex flex-wrap">
+  <div class="col-md-12 bg-light-primary">
+    <h5 class="title" mat-dialog-title>
+      {{'general.Please_specify_the_dimensions_of_the_image'|translate}}
+    </h5>
+  </div>
+  <mat-dialog-content class="w-100">
+    <div class="col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+      <div class="img-container col-md-8">
+        <img #image [src]="imageSource" class="w-100 h-100" crossorigin>
+      </div>
+      <div class="col-md-4 img-preview-container">
+      <img [src]="imageDestination" #preview class="img-preview w-100 h-100 mx-4" id="preview-img">
+      </div>
+    </div>
+  </mat-dialog-content>
+  <div mat-dialog-actions class="d-flex justify-content-end w-100 border-top">
+    <div class="d-flex justify-content-end mx-3 w-100">
+      <button class="btn btn-info" (click)="saveHandler()">
+        {{'general.save' | translate}}
+      </button>
+      <button class="btn btn-danger mx-1" mat-dialog-close (click)="closeDialog()">
+        {{'general.Cancel' | translate}}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+@import '../../shared/shared_variable.scss';
+
+.datatable_header{
+  background: white;
+  color: #374557;
+  font-size: 13px
+}
+table.dataTable thead th {
+  color: #374557;
+  white-space: nowrap;
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  padding:10px !important;
+}
+@media only screen and (max-width: 87.5rem){
+table.dataTable thead th {
+    font-size: 14px;
+}
+}
+.datatable_tr{
+  font-size: 12px;
+}
+
+.dropdown-item,.fa-info-circl,
+.fa-edit{
+  cursor: pointer;
+  color: gray;
+  font-size: 14px;
+
+}
+.dropdown-menu{
+  background-color: white !important;
+  border: none;
+}
+.dropdown-item.active, .dropdown-item:active ,.dropdown-item:hover,
+.fa-info-circle:hover,.fa-edit:hover{
+  color: $dark-purple !important;
+  text-decoration: none;
+  background-color: white !important;
+}
+.fa-check-circle,.fa-times-circle{
+  font-size: 22px;
+}
+@media(max-width:767px){
+#datatableexample{
+  width: auto !important;
+}
+}
+
+@media(min-width:767px) and (max-width:992px){
+  #datatableexample{
+    width: auto !important;
+  }
+  }

@@ -1,0 +1,79 @@
+<app-preloader></app-preloader>
+<section>
+  <form class="example-form" id="branchForm" [formGroup]="newBranchForm" (ngSubmit)="AddOrEditBranch()">
+    <div class="row bg-white p-3">
+      <div class="col-md-12 d-flex justify-content-between mb-4">
+        <h4 class="title">{{'admin.branches_settings' | translate}}</h4>
+        <a class="btn btn-info" routerLink="/admin/branch_list">
+          {{'general.back' | translate}}
+        </a>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <mat-label>
+          {{'admin.Title' | translate}}
+        </mat-label>
+        <mat-form-field class="example-full-width w-100 no-hint-container">
+          <input type="text" matInput formControlName="title"
+            [ngClass]="{'is-invalid border-danger':isValid && newBranchForm.get('title')?.hasError('required')}">
+        </mat-form-field>
+        <span class="d-flex justify-content-end"
+          *ngIf="newBranchForm.get('title')?.valid && newBranchForm.get('title')?.touched || isValid">
+          <span class="text-danger text-fs" *ngIf="newBranchForm.get('title')?.hasError('required')">
+            {{'admin.Title_is_Required' | translate}} *
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md-12">
+        <mat-label>
+          {{'admin.city' | translate}}
+        </mat-label>
+        <mat-form-field class="w-100 no-hint-container">
+          <mat-select formControlName="cityId"
+            [ngClass]="{'is-invalid border-danger':isValid && newBranchForm.get('cityId')?.hasError('required')}">
+            <mat-option *ngFor="let item of AllCities" [value]="item.id">
+              {{item.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span class="d-flex justify-content-end"
+          *ngIf="newBranchForm.get('cityId')?.valid && newBranchForm.get('cityId')?.touched || isValid">
+          <span class="text-danger text-fs" *ngIf="newBranchForm.get('cityId')?.hasError('required')">
+            {{'admin.city_is_Required' | translate}}*
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md-12 mt-3">
+        <mat-label>
+          {{'admin.location' | translate}}
+        </mat-label>
+        <mat-form-field class="example-full-width w-100 no-hint-container">
+          <input type="text" matInput formControlName="location"
+            [ngClass]="{'is-invalid border-danger':isValid && newBranchForm.get('location')?.hasError('required')}">
+        </mat-form-field>
+        <span class="d-flex justify-content-end"
+          *ngIf="newBranchForm.get('location')?.valid && newBranchForm.get('location')?.touched || isValid">
+          <span class="text-danger text-fs" *ngIf="newBranchForm.get('location')?.hasError('required')">
+            {{'admin.location_is_Required' | translate}}*
+          </span>
+        </span>
+      </div>
+
+      <div class="d-flex w-100 justify-content-end mt-4">
+        <button class="btn btn-info mx-2" type="submit">
+          {{'general.save' | translate}}
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+
+
+<ng-template #loading>
+  <div class="d-flex w-100 justify-content-center">
+    <app-loading></app-loading>
+  </div>
+</ng-template>

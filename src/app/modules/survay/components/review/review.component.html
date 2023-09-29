@@ -1,0 +1,58 @@
+<div class="main">
+  <section class="signup">
+    <div class="rest-cont">
+      <div class="logo largeLogo">
+        <img src="assets/images/booking/logo-rest-01.png" alt="vendor-logo">
+      </div>
+    </div>
+    <div class="container">
+
+      <div class="signup-content">
+        <form method="POST" [formGroup]="survayQuestionForm" (ngSubmit)="submitUserSurvey()">
+          <h2 class="form-title">
+            {{ 'survey.How_was_your_experience' |translate}}
+          </h2>
+          <div class="form-group">
+                <ng-container *ngFor="let question of surveyQuestions">
+                  <star-rating-control
+                    [labelText]="question.text"
+                    (starClickChange)="starClickChangeFn($event,question.id)">
+                  </star-rating-control>
+            </ng-container>
+          </div>
+
+          <div class="form-group">
+            <label>
+              {{'survey.Notes'|translate}}
+            </label>
+            <textarea class="form-control p-2" rows="5"
+              formControlName="notes" id="notes"
+              placeholder="{{'survey.Write_your_opinion'|translate}}">
+            </textarea>
+          </div>
+
+          <div class="form-group">
+            <a class="text-white">
+              <button class="btn text-white form-submit" type="submit">
+                <div class="text-white">
+                  {{'survey.SUBMIT_REVIEW'|translate}}
+                  <i class="fas fa-spin fa-spinner fa-1x" *ngIf="isLoading"></i>
+                </div>
+              </button>
+
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="tableer-footer">
+      <p class="tableer-footer-p">
+        {{'general.Powered_by'|translate}} :
+      </p>
+      <a href="https://tableer.co" class="tableer-footer-link">
+        <img src="assets/images/booking/tableer-footer-logo.png" alt="vendor-logo">
+      </a>
+    </div>
+  </section>
+
+</div>

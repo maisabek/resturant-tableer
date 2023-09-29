@@ -1,0 +1,95 @@
+<div class="page_wrapper">
+
+  <app-preloader></app-preloader>
+
+  <div class="full_bg">
+    <div class="container">
+      <section class="signup_section">
+        <div class="top_part">
+          <a routerLink="" class="back_btn">
+            <i class="fas fa-arrow-left"></i>
+            {{'general.back' | translate}}
+          </a>
+          <a class="navbar-brand" routerLink="">
+            <img src="assets/images/portal/footer_logo.png" alt="image">
+          </a>
+        </div>
+
+        <div class="signup_form">
+          <div class="section_title">
+            <h2>
+              {{'auth.Welcom' | translate}}
+            </h2>
+            <p>
+              {{'auth.Fill_all_fields_so_we_can_get_some_info_about_you' | translate}}
+              <br>
+              {{'auth.We_well_never_send_you_spam' | translate}}
+            </p>
+          </div>
+          <form [formGroup]="LoginForm" (ngSubmit)="login()">
+            <div class="form-group">
+              <div>
+                <input type="email" formControlName="email"
+                 class="form-control"
+                 placeholder="{{'auth.Email' | translate}}"
+                [ngClass]="{'is-invalid border-danger':isValid && LoginForm.get('email')?.hasError('required')}">
+              </div>
+              <div>
+                <span *ngIf="LoginForm.get('email')?.valid && LoginForm.get('email')?.touched || isValid">
+                  <span class="text-danger text-fs" *ngIf="LoginForm.get('email')?.hasError('required')">
+                    {{'auth.Email_is_Required' | translate}}
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <input type="password" formControlName="password" class="form-control"
+                placeholder="{{'auth.Password' | translate}}"
+                [ngClass]="{'is-invalid border-danger':isValid && LoginForm.get('password')?.hasError('required')}"
+                >
+              </div>
+              <div>
+                <span *ngIf="LoginForm.get('password')?.valid && LoginForm.get('password')?.touched || isValid">
+                  <span class="text-danger text-fs" *ngIf="LoginForm.get('password')?.hasError('required')">
+
+                    {{'auth.Password_is_Required' | translate}}
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn puprple_btn" type="submit">
+                {{'auth.SIGN_IN' | translate}}
+              </button>
+            </div>
+          </form>
+          <p class="or_block">
+            <span>
+              {{'auth.OR' | translate}}
+            </span>
+          </p>
+          <div class="or_option">
+            <p>
+              {{'auth.Sign_In_with_your_work_email' | translate}}
+            </p>
+            <a href="#" class="btn google_btn">
+              <img src="assets/images/portal/google.png" alt="image">
+              <span>
+                {{'auth.Sign_Up_with_Google' | translate}}
+              </span> </a>
+            <p>{{'auth.Dont_have_an_account' | translate}}?
+              <a routerLink="/auth/register">
+                {{'auth.Sign_Up_here' | translate}}
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+
+
+</div>

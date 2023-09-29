@@ -1,0 +1,23 @@
+@import '../../shared/shared_variable.scss';
+
+.theme-light-show{
+  width: 300px;
+}
+.oops_container{width: 45%;}
+.oops{height: 80vh;margin-top: 5%;}
+.opps-title{
+  font-size: 32px;
+  color: black;
+  font-weight: bold;
+  margin-top: 5%;
+  font-family: 'cairo';
+}
+
+.btn-return{
+  background-color: $dark-purple;
+  color: white;
+}
+
+.fw-semibold {
+  color: $dark-purple;
+}

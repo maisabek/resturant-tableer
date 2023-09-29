@@ -1,0 +1,157 @@
+<app-preloader></app-preloader>
+
+<section class="p-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-3 d-flex justify-content-between flex-wrap">
+        <div class="d-flex justify-content-between">
+          <h5 class="tenant_title">{{UserTenant?.title}}</h5>
+
+        </div>
+        <div class="d-flex flex-wrap">
+          <div class="d-flex align-items-baseline">
+            <i class="fas fa-circle text-success" *ngIf="UserTenant?.isActive"></i>
+            <i class="fas fa-circle text-muted" *ngIf="UserTenant?.isActive == false"></i>
+            <label class="title mx-1">{{'admin.Active' | translate}}</label>
+          </div>
+
+          <div class="d-flex  align-items-baseline mx-2">
+            <i class="far fa-check-circle text-success mx-1" *ngIf="UserTenant?.published"></i>
+            <i class="far fa-times-circle text-danger mx-1" *ngIf="UserTenant?.published == false"></i>
+            <label for="title mx-1">{{'admin.published' | translate}}</label>
+          </div>
+          <div class="mx-2">
+            <a href="{{UserTenant?.menuUrl}}" class="cursor-pointer title menu_url" data-toggle="tooltip" title="{{'admin.Menu_Here' | translate}}">
+              <i class="fas fa-utensils text-success"></i>
+              {{'admin.Menu_Here' | translate}}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card border-0 bg-primary">
+          <div class="card-body d-flex justify-content-between">
+            <div class="card-menu text-white">
+              <span>{{'admin.numberOfBranches' | translate}}</span>
+              <h2 class="mb-0">
+                {{UserTenant?.numberOfBranches}}
+              </h2>
+            </div>
+            <div class="icon-box icon-box-lg">
+              <svg width="28" height="28" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 384 512">
+                <path fill="white"
+                  d="M384 144c0-44.2-35.8-80-80-80s-80 35.8-80 80c0 36.4 24.3 67.1 57.5 76.8-.6 16.1-4.2 28.5-11 36.9-15.4 19.2-49.3 22.4-85.2 25.7-28.2 2.6-57.4 5.4-81.3 16.9v-144c32.5-10.2 56-40.5 56-76.3 0-44.2-35.8-80-80-80S0 35.8 0 80c0 35.8 23.5 66.1 56 76.3v199.3C23.5 365.9 0 396.2 0 432c0 44.2 35.8 80 80 80s80-35.8 80-80c0-34-21.2-63.1-51.2-74.6 3.1-5.2 7.8-9.8 14.9-13.4 16.2-8.2 40.4-10.4 66.1-12.8 42.2-3.9 90-8.4 118.2-43.4 14-17.4 21.1-39.8 21.6-67.9 31.6-10.8 54.4-40.7 54.4-75.9zM80 64c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16zm0 384c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zm224-320c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card border-0 bg-primary-light">
+          <div class="card-body d-flex justify-content-between">
+            <div class="card-menu text-primary">
+              <span>{{'admin.numberOfMonths' | translate}}</span>
+              <h2 class="mb-0">
+                {{UserTenant?.numberOfMonths}}
+              </h2>
+            </div>
+            <div class="icon-box icon-box-lg">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M0 8.7773C0.00165391 10.5563 1.44323 11.9981 3.2222 12H8.7778C10.5568 11.9981 11.9983 10.5563 12 8.7773V3.2227C11.9983 1.44373 10.5568 0.00192952 8.7778 0H3.2222C1.44323 0.00192952 0.00165319 1.44373 0 3.2227V8.7773ZM2 3.2227C2.00072 2.54791 2.54741 2.00099 3.2222 2L8.7778 2C9.45259 2.00099 9.99928 2.54791 10 3.2227V8.7773C9.99929 9.45209 9.45259 9.99901 8.7778 10L3.2222 10C2.54741 9.99901 2.00072 9.45209 2 8.7773V3.2227Z"
+                  fill="#32236F"></path>
+                <path
+                  d="M0 22.7773C0.00165272 24.5563 1.44323 25.9981 3.2222 26L8.7778 26C10.5568 25.9981 11.9983 24.5563 12 22.7773V17.2227C11.9983 15.4437 10.5568 14.0019 8.7778 14L3.2222 14C1.44323 14.0019 0.00165391 15.4437 0 17.2227V22.7773ZM2 17.2227C2.00072 16.5479 2.54741 16.001 3.2222 16H8.7778C9.45259 16.001 9.99928 16.5479 10 17.2227V22.7773C9.99929 23.4521 9.45259 23.999 8.7778 24L3.2222 24C2.54741 23.999 2.00071 23.4521 2 22.7773V17.2227Z"
+                  fill="#32236F"></path>
+                <path
+                  d="M20 0C16.6863 0 14 2.68629 14 6C14 9.31371 16.6863 12 20 12C23.3137 12 26 9.31371 26 6C25.9964 2.6878 23.3122 0.00363779 20 0ZM20 10C17.7909 10 16 8.20914 16 6C16 3.79086 17.7909 2 20 2C22.2091 2 24 3.79086 24 6C23.9977 8.20818 22.2082 9.99769 20 10Z"
+                  fill="#32236F"></path>
+                <path
+                  d="M17.2222 14C15.4432 14.0019 14.0017 15.4437 14 17.2227L14 22.7773C14.0017 24.5563 15.4432 25.9981 17.2222 26L22.7778 26C24.5568 25.9981 25.9984 24.5563 26 22.7773L26 17.2227C25.9983 15.4437 24.5568 14.0019 22.7778 14L17.2222 14ZM24 17.2227V22.7773C23.9993 23.4521 23.4526 23.999 22.7778 24L17.2222 24C16.5474 23.999 16.0007 23.4521 16 22.7773V17.2227C16.0007 16.5479 16.5474 16.001 17.2222 16H22.7778C23.4526 16.001 23.9993 16.5479 24 17.2227Z"
+                  fill="#32236F"></path>
+              </svg>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card border-0 bg-primary">
+          <div class="card-body d-flex justify-content-between">
+            <div class="card-menu text-white">
+              <span>{{'admin.numberOfUsers' | translate}}</span>
+              <h2 class="mb-0">
+                {{UserTenant?.numberOfUsers}}
+              </h2>
+            </div>
+            <div class="icon-box icon-box-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 640 512">
+                <path fill="white"
+                  d="M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-4 mt-4">
+        <div class="border-0 bg-white p-3">
+          <div class="border-0 pb-0">
+            <p class="title mx-4">Dates</p>
+          </div>
+          <div class="pt-2 px-0">
+            <div class="history-box dz-scroll">
+              <ul class="history">
+                <li>
+                  <div class="history-dot"></div>
+                  <a class="history-deatils">
+                    <p class="mt-1 history_p">
+                      {{'general.Start_Date' | translate}}
+                    </p>
+                    <span class="text-history">
+                      {{UserTenant?.startDate | date}}
+                    </span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="history">
+                <li>
+                  <div class="history-dot"></div>
+                  <a class="history-deatils">
+                    <p class="mt-1 history_p">
+                      {{'general.End_Date' | translate}}
+                    </p>
+                    <span class="text-history">
+                      {{UserTenant?.endDate | date}}
+                    </span>
+                  </a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 mt-4">
+        <div class="w-100 position-relative">
+          <img src="assets/images/reserve.jpg" class="w-100 reserve_img" alt="">
+          <div class="overlay">
+            <p class="welcomeMsg">{{UserTenant?.welcomeMsg}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </div>
+</section>

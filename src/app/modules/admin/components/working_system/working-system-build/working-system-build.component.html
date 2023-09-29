@@ -1,0 +1,490 @@
+<app-preloader></app-preloader>
+<section>
+  <form class="example-form" id="WorkingSystemForm" [formGroup]="newWorkingSystemForm"
+    (ngSubmit)="addOrEditWorkingSystem()">
+    <div class="row bg-white p-3">
+      <div class="col-md-12 d-flex justify-content-between align-items-center mb-3">
+          <h4 class="title">{{'admin.Working_System_Configration' | translate}}</h4>
+            <a class="btn btn-info" routerLink="/admin/Working_System_List">
+              {{'general.back' | translate}}
+            </a>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <mat-label>
+          {{'admin.Title' | translate}}
+        </mat-label>
+        <mat-form-field class="example-full-width w-100">
+          <input type="text" matInput formControlName="title">
+        </mat-form-field>
+
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <mat-label>
+          {{'admin.Choose_Working_System_Type' | translate}}
+        </mat-label>
+        <mat-form-field class="w-100">
+          <mat-select formControlName="workingSystemTypeId">
+            <mat-option *ngFor="let item of WorkingSystemTypes" [value]="item.id">{{item.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-12 mb-4">
+        <mat-label class="w-100">
+          {{'admin.Max_Future_Days' | translate}}
+        </mat-label>
+        <div class="d-flex align-items-center">
+          <mat-form-field class="w-100">
+            <input matInput type="text" [(ngModel)]="maxFutureDaysCount" [ngModelOptions]="{standalone: true}">
+            <a matSuffix mat-button color="primary">
+              <button style="min-width: 2.5rem" (click)="maxFutureDaysCountFn()" class="btn btn-increment btn-plus"
+                type="button">
+                <strong>+</strong>
+              </button>
+            </a>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-6">
+        <mat-form-field class="w-100">
+          <input matInput [matDatepicker]="startDatePicker" formControlName="startDate"
+            placeholder="{{'general.Start_Date' | translate}}">
+          <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field class="w-100">
+          <input matInput [matDatepicker]="endDatePicker" formControlName="endDate"
+            placeholder="{{'general.End_Date' | translate}}">
+          <mat-datepicker-toggle matIconSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex w-100 justify-content-end mt-4">
+        <button class="btn btn-info mx-2" type="submit">
+          {{'general.save' | translate}}
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row bg-white align-items-baseline p-3 mt-5">
+    <div class="col-md-12 d-flex justify-content-between align-items-center mb-4">
+      <h4 class="title">
+        {{'admin.Hours_System_Configration' | translate}}
+      </h4>
+      <button class="btn btn-info" (click)="OpenDialog()">
+        + {{'admin.Add_Days' | translate}}
+      </button>
+    </div>
+
+    <ng-container *ngIf="WorkingSystemDays.length;else temlateRef">
+      <ng-container *ngIf="loadingWorkingSystemDays == false;else loading">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="title">{{'admin.dayOfWeek' | translate}}</th>
+                <th scope="col" class="title">{{'admin.Open_Time' | translate}}</th>
+                <th scope="col" class="title">{{'admin.Close_Time' | translate}}</th>
+                <th scope="col" class="title">{{'admin.Waiting_List' | translate}}</th>
+                <th scope="col" class="title">{{'general.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let day of WorkingSystemDays;let i = index">
+                <td>{{ day.dayOfWeek }}</td>
+                <td>{{day.openTime | date:"hh:mm a"}}</td>
+                <td>{{day.closeTime | date:"hh:mm a"}}</td>
+                <td>{{day.allowWaitingList}}</td>
+                <td>
+                  <div class="dropdown dropdown-inline">
+                    <button type="button" class="btn text-primary  btn-icon btn-sm" data-toggle="dropdown"
+
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div class="dropdown-menu shadow-sm">
+                      <a class="dropdown-item cursor-pointer"
+                      (click)="GetWorkingSystemDayById(day.id)">
+                        <i class="fa fa-edit mx-1 text-primary"></i>
+                        {{'general.update' | translate}}
+                      </a>
+                      <a class="dropdown-item cursor-pointer"
+                      (click)="DeleteWorkingSystemDay(day.id)">
+                        <i class="fa fa-times mx-2 text-danger"></i>
+                        {{'general.delete' | translate}}
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-container>
+
+    </ng-container>
+
+  </div>
+</section>
+
+
+
+<ng-template #addDayRef>
+  <div class="d-flex justify-content-between w-100 align-items-center">
+    <h2 mat-dialog-title>
+      {{'admin.Add_Day' | translate}}
+    </h2>
+  </div>
+  <div class="w-100 d-flex justify-content-center" *ngIf="AllDays == null">
+    <p class="text-danger">
+      {{'admin.Attention_There_Is_No_Day_To_Add' | translate}}
+    </p>
+  </div>
+  <mat-dialog-content>
+    <form id="AddDay" [formGroup]="workingSystemDaysForm" (ngSubmit)="AddOrEditWorkingSystemDay()">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-label>
+            {{'admin.Choose_Day' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100">
+
+            <mat-select formControlName="dayOfWeek" [errorStateMatcher]="matcher">
+              <mat-option *ngFor="let item of AllDays" [value]="item">{{item}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <span class="d-flex justify-content-end"
+            *ngIf="workingSystemDaysForm.get('dayOfWeek')?.invalid && workingSystemDaysForm.get('dayOfWeek')?.touched || AddOrEditIsValid">
+            <span class="text-danger text-validate"
+              *ngIf="workingSystemDaysForm.get('dayOfWeek')?.hasError('required')">
+              {{'admin.Day_Of_Week_Is_Required' | translate}}*
+            </span>
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <mat-label>
+            {{'admin.Time_Increment_Count' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100">
+
+            <input matInput type="number" formControlName="timeIncrement">
+          </mat-form-field>
+          <span class="d-flex justify-content-end"
+            *ngIf="workingSystemDaysForm.get('timeIncrement')?.invalid && workingSystemDaysForm.get('timeIncrement')?.touched || AddOrEditIsValid">
+            <span class="text-danger text-validate"
+              *ngIf="workingSystemDaysForm.get('timeIncrement')?.hasError('required')">
+              {{'admin.timeIncrement_Required' | translate}}*
+            </span>
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <mat-label>
+            {{'admin.maxGuestsNumberPerReservation' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100">
+
+            <input matInput type="number" formControlName="maxGuestsNumberPerReservation">
+          </mat-form-field>
+
+          <!-- <span class="d-flex justify-content-end w-100"
+              *ngIf="workingSystemDaysForm.get('maxGuestsNumberPerReservation')?.invalid && workingSystemDaysForm.get('maxGuestsNumberPerReservation')?.touched || AddOrEditIsValid">
+              <span class="text-danger text-validate"
+                *ngIf="workingSystemDaysForm.get('maxGuestsNumberPerReservation')?.hasError('required')">
+                {{'admin.maxGuestsNumberPerReservation_Is_Required' | translate}}*
+              </span>
+            </span> -->
+        </div>
+
+        <div class="col-md-12 mt-3">
+          <mat-tab-group class="w-100">
+            <mat-tab>
+              <ng-template mat-tab-label>
+                {{'admin.Regular' | translate}}
+              </ng-template>
+              <div class="d-flex flex-wrap">
+                <div class="col-md-6  mt-4">
+                  <mat-label>
+                    {{'admin.Open_Time' | translate}}
+                  </mat-label>
+                  <mat-form-field class="w-100">
+
+                    <input type="text" matInput [ngxMatTimepicker]="openTimepicker" [format]="12"
+                      formControlName="openTime" />
+
+                    <mat-icon matSuffix (click)="openFromIcon(openTimepicker)">
+                      schedule
+                    </mat-icon>
+                  </mat-form-field>
+
+                  <ngx-mat-timepicker #openTimepicker [enableKeyboardInput]="true" [max]="maxTime" [min]="minTime">
+                  </ngx-mat-timepicker>
+
+                  <span class="d-flex justify-content-end"
+                    *ngIf="workingSystemDaysForm.get('openTime')?.invalid && workingSystemDaysForm.get('openTime')?.touched || AddOrEditIsValid">
+                    <span class="text-danger text-validate"
+                      *ngIf="workingSystemDaysForm.get('openTime')?.hasError('required')">
+                      {{'admin.Open_Time_Is_Required' | translate}}*
+                    </span>
+                  </span>
+                </div>
+
+                <div class="col-md-6  mt-4">
+                  <mat-label>
+                    {{'admin.Close_Time' | translate}}
+                  </mat-label>
+                  <mat-form-field class="w-100">
+
+                    <input type="text" matInput [ngxMatTimepicker]="closeTimePicker" [format]="12"
+                      formControlName="closeTime" />
+
+                    <mat-icon matSuffix (click)="openFromIcon(closeTimePicker)">
+                      schedule
+                    </mat-icon>
+                  </mat-form-field>
+
+                  <ngx-mat-timepicker #closeTimePicker [enableKeyboardInput]="true" [max]="maxTime" [min]="minTime">
+                  </ngx-mat-timepicker>
+
+                  <span class="d-flex justify-content-end"
+                    *ngIf="workingSystemDaysForm.get('closeTime')?.invalid && workingSystemDaysForm.get('closeTime')?.touched || AddOrEditIsValid">
+                    <span class="text-danger text-validate"
+                      *ngIf="workingSystemDaysForm.get('closeTime')?.hasError('required')">
+                      {{'admin.Close_Time_Is_Required' | translate}}*
+                    </span>
+                  </span>
+                </div>
+
+                <div class="col-md-6 mt-3">
+                  <mat-label>
+                    {{'admin.Max_Guests_Number' | translate}}
+                  </mat-label>
+                  <mat-form-field class="w-100">
+
+                    <input matInput type="number" formControlName="maxGuestsNumber">
+                  </mat-form-field>
+                  <span class="d-flex justify-content-end w-100"
+                    *ngIf="workingSystemDaysForm.get('maxGuestsNumber')?.invalid && workingSystemDaysForm.get('maxGuestsNumber')?.touched || AddOrEditIsValid">
+                    <span class="text-danger text-validate"
+                      *ngIf="workingSystemDaysForm.get('maxGuestsNumber')?.hasError('required')">
+                      {{'admin.maxGuestsNumber_Is_Required' | translate}}*
+                    </span>
+                  </span>
+                </div>
+
+
+                <div class="col-md-6 mt-3">
+                  <mat-label>
+                    {{'admin.Max_Reservations_Number' | translate}}
+                  </mat-label>
+                  <mat-form-field class="w-100">
+
+                    <input matInput type="number" formControlName="maxReservationsNumber">
+                  </mat-form-field>
+
+                  <span class="d-flex justify-content-end w-100"
+                    *ngIf="workingSystemDaysForm.get('maxReservationsNumber')?.invalid && workingSystemDaysForm.get('maxReservationsNumber')?.touched || AddOrEditIsValid">
+                    <span class="text-danger text-validate"
+                      *ngIf="workingSystemDaysForm.get('maxReservationsNumber')?.hasError('required')">
+                      {{'admin.maxReservationsNumber_Is_Required' | translate}}*
+                    </span>
+                  </span>
+                </div>
+
+                <div class="col-md-6 mt-3">
+                  <mat-label>
+                    {{'admin.Down_Payment_Per_Reservation' | translate}}
+                  </mat-label>
+                  <mat-form-field class="w-100">
+                    <input matInput type="number" formControlName="downPaymentPerReservation">
+                  </mat-form-field>
+
+                  <span class="d-flex justify-content-end w-100"
+                    *ngIf="workingSystemDaysForm.get('downPaymentPerReservation')?.invalid && workingSystemDaysForm.get('downPaymentPerReservation')?.touched || AddOrEditIsValid">
+                    <span class="text-danger text-validate"
+                      *ngIf="workingSystemDaysForm.get('downPaymentPerReservation')?.hasError('required')">
+                      {{'admin.downPaymentPerReservation_Is_Required' | translate}}*
+                    </span>
+                  </span>
+                </div>
+
+                <div class="col-md-6 mt-3">
+                  <mat-label>
+                    {{'admin.Down_Payment_Per_Guest' | translate}}
+                  </mat-label>
+                  <mat-form-field class="w-100">
+
+                    <input matInput type="number" formControlName="downPaymentPerGuest">
+                  </mat-form-field>
+
+                  <span class="d-flex justify-content-end w-100"
+                    *ngIf="workingSystemDaysForm.get('downPaymentPerGuest')?.invalid && workingSystemDaysForm.get('downPaymentPerGuest')?.touched || AddOrEditIsValid">
+                    <span class="text-danger text-validate"
+                      *ngIf="workingSystemDaysForm.get('downPaymentPerGuest')?.hasError('required')">
+                      {{'admin.Down_Payment_Per_Guest_Is_Required' | translate}}*
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </mat-tab>
+
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                {{'admin.Waiting' | translate}}
+              </ng-template>
+              <div class="d-flex flex-wrap">
+                <div class="col-md-12 mt-4">
+                  <mat-slide-toggle class="mx-1" formControlName="allowWaitingList" color="primary">
+                  </mat-slide-toggle>
+                  <label class="label-font-size">
+                    {{'admin.Waiting_List' | translate}}
+                  </label>
+                </div>
+                <div class="col-md-6  mt-3">
+                  <mat-label>
+                    {{'admin.Waiting_Open_Time' | translate}}
+                  </mat-label>
+                  <mat-form-field class="w-100">
+
+                    <input type="text" matInput [ngxMatTimepicker]="waitingOpenTimePicker" [format]="12"
+                      formControlName="waitingOpenTime" />
+
+                    <mat-icon matSuffix (click)="openFromIcon(waitingOpenTimePicker)">
+                      schedule
+                    </mat-icon>
+                  </mat-form-field>
+
+                  <ngx-mat-timepicker #waitingOpenTimePicker [enableKeyboardInput]="true" [max]="maxTime"
+                    [min]="minTime">
+                  </ngx-mat-timepicker>
+
+                  <span class="d-flex justify-content-end w-100"
+                    *ngIf="workingSystemDaysForm.get('waitingOpenTime')?.invalid && workingSystemDaysForm.get('waitingOpenTime')?.touched || AddOrEditIsValid">
+                    <span class="text-danger text-validate"
+                      *ngIf="workingSystemDaysForm.get('waitingOpenTime')?.hasError('required')">
+                      {{'admin.waitingOpenTime_Is_Required' | translate}}*
+                    </span>
+                  </span>
+                </div>
+
+                <div class="col-md-6  mt-3">
+                  <mat-label>
+                    {{'admin.Waiting_Close_Time' | translate}}
+                  </mat-label>
+                  <mat-form-field class="w-100">
+
+                    <input type="text" matInput [ngxMatTimepicker]="waitingCloseTimePicker" [format]="12"
+                      formControlName="waitingCloseTime" />
+
+                    <mat-icon matSuffix (click)="openFromIcon(waitingCloseTimePicker)">
+                      schedule
+                    </mat-icon>
+                  </mat-form-field>
+
+                  <ngx-mat-timepicker #waitingCloseTimePicker [enableKeyboardInput]="true" [max]="maxTime"
+                    [min]="minTime">
+                  </ngx-mat-timepicker>
+
+                  <span class="d-flex justify-content-end w-100"
+                    *ngIf="workingSystemDaysForm.get('waitingCloseTime')?.invalid && workingSystemDaysForm.get('waitingCloseTime')?.touched || AddOrEditIsValid">
+                    <span class="text-danger text-validate"
+                      *ngIf="workingSystemDaysForm.get('waitingCloseTime')?.hasError('required')">
+                      {{'admin.waitingCloseTime_Is_Required' | translate}}*
+                    </span>
+                  </span>
+                </div>
+                <ng-container *ngIf="workingSystemDaysForm.get('allowWaitingList')?.value">
+
+
+                  <div class="col-md-6 mt-3 mb-3">
+                    <mat-label>
+                      {{'admin.Max_Waiting_Reservations' | translate}}
+                    </mat-label>
+                    <mat-form-field class="w-100">
+
+                      <input matInput type="number" formControlName="maxWaitingReservationsNumber">
+                    </mat-form-field>
+
+                    <span class="d-flex justify-content-end w-100"
+                      *ngIf="workingSystemDaysForm.get('maxWaitingReservationsNumber')?.invalid && workingSystemDaysForm.get('maxWaitingReservationsNumber')?.touched || AddOrEditIsValid">
+                      <span class="text-danger text-validate"
+                        *ngIf="workingSystemDaysForm.get('maxWaitingReservationsNumber')?.hasError('required')">
+                        {{'admin.maxWaitingReservationsNumber_Is_Required' | translate}}*
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="col-md-6 mt-3 mb-3">
+                    <mat-label>
+                      {{'admin.Max_Waiting_Guests' | translate}}
+                    </mat-label>
+                    <mat-form-field class="w-100">
+
+                      <input matInput type="number" formControlName="maxWaitingGuestsNumber">
+                    </mat-form-field>
+                    <span class="d-flex justify-content-end w-100"
+                      *ngIf="workingSystemDaysForm.get('maxWaitingGuestsNumber')?.invalid && workingSystemDaysForm.get('maxWaitingGuestsNumber')?.touched || AddOrEditIsValid">
+                      <span class="text-danger text-validate"
+                        *ngIf="workingSystemDaysForm.get('maxWaitingGuestsNumber')?.hasError('required')">
+                        {{'admin.maxWaitingGuestsNumber_Is_Required' | translate}}*
+                      </span>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="d-flex justify-content-end w-100">
+      <button class="btn btn-info" form="AddDay" type="submit" *ngIf="AllDays != null">
+        {{'general.save' | translate}}
+      </button>
+      <button class="btn btn-danger  mx-1" mat-dialog-close>
+        {{'general.Cancel' | translate}}
+      </button>
+    </div>
+  </mat-dialog-actions>
+</ng-template>
+
+
+<ng-template #loading>
+  <div class="d-flex w-100 justify-content-center">
+    <app-loading></app-loading>
+  </div>
+</ng-template>
+
+<ng-template #temlateRef>
+  <div class="w-100 d-flex justify-content-center">
+    <p>
+      {{'admin.Attention_Must_Add_Days_Here_From_Button' | translate}}
+    </p>
+  </div>
+</ng-template>
+
+
+<!-- <mat-form-field class="w-100">
+                <input matInput [ngxMatDatetimePicker]="waitingCloseTimePicker" placeholder="Waiting Close Time"
+                  formControlName="waitingCloseTime" (valueChange)="valueChanged($event)">
+                <mat-datepicker-toggle matSuffix [for]="waitingCloseTimePicker"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #waitingCloseTimePicker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                  [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+                  [color]="color" [enableMeridian]="enableMeridian">
+                </ngx-mat-datetime-picker>
+</mat-form-field> -->

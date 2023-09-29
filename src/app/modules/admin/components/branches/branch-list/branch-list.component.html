@@ -1,0 +1,135 @@
+
+<div class="row bg-white py-3">
+  <div class="col-md-12 d-flex justify-content-end">
+    <button class="btn btn-info" (click)="openDialog()">
+      {{'admin.branches' | translate}} +
+    </button>
+
+  </div>
+  <div class="col-md-12 bg-white py-4 px-4 rounded">
+    <!-- <app-datatable
+      [service]="_BranchesService"
+      [columns]="columns"
+      [method]="'listDataTable'"
+      [UpdateData]="{ isExist: true }"
+      [DeleteIsExist]="true"
+      (event)="eventHandler($event)">
+    </app-datatable> -->
+    <ng-container *ngIf="loadingBranches == false;else loading">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="title text-center">{{'admin.Title' | translate}}</th>
+            <th scope="col" class="title text-center">{{'admin.code' | translate}}</th>
+            <th scope="col" class="title text-center">{{'admin.Active' | translate}}</th>
+            <th scope="col" class="title text-center">{{'general.actions' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of TenantBranches;let i=index">
+            <td class="text-center">{{item.title}}</td>
+            <td class="text-center">
+              {{item.code}}
+            </td>
+            <td class="text-center">
+              <button type="button" class="btn rounded-clip  btn-icon btn-sm"
+              [ngClass]="{'btn-outline-primary': item.isActive , 'btn-outline-danger': !item.isActive}"
+              (click)="ToggleActive(!item.isActive,item.id)">
+              <ng-container *ngIf="item.isActive">Active</ng-container>
+              <ng-container *ngIf="!item.isActive">Not Active</ng-container>
+            </button>
+            </td>
+            <td class="text-center">
+              <div class="dropdown dropdown-inline">
+                <button type="button" class="btn text-primary  btn-icon btn-sm" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-h"></i>
+                </button>
+                <div class="dropdown-menu shadow-sm">
+                  <a class="dropdown-item cursor-pointer"
+                  (click)="updateBranch(item.id)">
+                    <i class="fa fa-edit mx-1 text-primary"></i>
+                    {{'general.update' | translate}}
+                  </a>
+                  <a class="dropdown-item cursor-pointer"
+                  (click)="DeleteBranch(item.id)">
+                    <i class="fa fa-times mx-2 text-danger"></i>
+                    {{'general.delete' | translate}}
+                  </a>
+
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</div>
+
+
+<ng-template #BranchDialogRef>
+  <h2 mat-dialog-title>
+    {{'admin.Add_branch' | translate}}
+  </h2>
+  <mat-dialog-content class="mat-typography">
+    <form class="example-form" id="branchForm" [formGroup]="branchForm" (ngSubmit)="AddOrEditbranch()">
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <mat-label>
+            {{'admin.Title' | translate}}
+          </mat-label>
+          <mat-form-field class="example-full-width w-100 no-hint-container">
+            <input type="text" matInput formControlName="title"
+              [ngClass]="{'is-invalid border-danger':isValid && branchForm.get('title')?.hasError('required')}">
+          </mat-form-field>
+          <span class="d-flex justify-content-end"
+            *ngIf="branchForm.get('title')?.valid && branchForm.get('title')?.touched || isValid">
+            <span class="text-danger text-fs" *ngIf="branchForm.get('title')?.hasError('required')">
+              {{'admin.Title_is_Required' | translate}} *
+            </span>
+          </span>
+        </div>
+
+        <div class="col-md-12">
+          <mat-label>
+            {{'admin.city' | translate}}
+          </mat-label>
+          <mat-form-field class="w-100 no-hint-container">
+            <mat-select formControlName="cityId" [errorStateMatcher]="matcher"
+              [ngClass]="{'is-invalid border-danger':isValid && branchForm.get('cityId')?.hasError('required')}">
+              <mat-option *ngFor="let item of AllCities" [value]="item.id">
+                {{item.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <span class="d-flex justify-content-end"
+            *ngIf="branchForm.get('cityId')?.valid && branchForm.get('cityId')?.touched || isValid">
+            <span class="text-danger text-fs" *ngIf="branchForm.get('cityId')?.hasError('required')">
+              {{'admin.city_is_Required' | translate}}*
+            </span>
+          </span>
+        </div>
+
+
+
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button class="btn btn-danger" mat-dialog-close>
+      {{'general.Cancel' | translate}}
+    </button>
+    <button class="btn btn-info mx-2" type="submit" form="branchForm" cdkFocusInitial>
+      {{'general.save' | translate}}
+    </button>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template #loading>
+  <!-- <div class="d-flex w-100 justify-content-center">
+    <app-loading></app-loading>
+  </div> -->
+  <app-preloader></app-preloader>
+</ng-template>

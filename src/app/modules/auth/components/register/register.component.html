@@ -1,0 +1,141 @@
+<div class="page_wrapper">
+
+  <app-preloader></app-preloader>
+
+
+  <div class="full_bg">
+
+    <div class="container">
+       <section class="signup_section">
+
+        <div class="top_part">
+          <a routerLink="" class="back_btn">
+            <i class="fas fa-arrow-left"></i>
+            {{'general.back' | translate}}
+          </a>
+          <a class="navbar-brand" routerLink="">
+            <img src="assets/images/portal/footer_logo.png" alt="image">
+          </a>
+        </div>
+
+        <div class="signup_form">
+          <div class="section_title">
+            <h2>
+            <span>
+              {{'auth.Create' | translate}}
+            </span>
+             {{'auth.an_account' | translate}}
+            </h2>
+            <p>
+              {{'auth.Fill_all_fields_so_we_can_get_some_info_about_you' | translate}}. <br>
+              {{'auth.We_well_never_send_you_spam' | translate}}
+            </p>
+          </div>
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="form-group d-flex flex-nowrap justify-content-between">
+              <div>
+              <input type="text" formControlName="firstName" class="form-control"
+              placeholder="{{'auth.First_Name' | translate}}"
+              [ngClass]="{'is-invalid border-danger':isValid && registerForm.get('firstName')?.hasError('required')}"
+              >
+              <span *ngIf="registerForm.get('firstName')?.valid && registerForm.get('firstName')?.touched || isValid">
+                <span class="text-danger text-fs" *ngIf="registerForm.get('firstName')?.hasError('required')">
+                  {{'auth.First_Name_is_Required' | translate}}
+                </span>
+              </span>
+              </div>
+              <div>
+              <input type="text" formControlName="lastName" class="form-control ml-3"
+              placeholder="{{'auth.Last_Name' | translate}}"
+              [ngClass]="{'is-invalid border-danger':isValid && registerForm.get('lastName')?.hasError('required')}"
+              >
+              <span *ngIf="registerForm.get('lastName')?.valid && registerForm.get('lastName')?.touched || isValid">
+                <span class="text-danger ml-3 text-fs" *ngIf="registerForm.get('lastName')?.hasError('required')">
+                  {{'auth.Last_Name_is_Required' | translate}}
+                </span>
+              </span>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="username" class="form-control"
+              placeholder="{{'auth.User_Name' | translate}}"
+              [ngClass]="{'is-invalid border-danger':isValid && registerForm.get('username')?.hasError('required')}"
+              >
+              <span *ngIf="registerForm.get('username')?.valid && registerForm.get('username')?.touched || isValid">
+                <span class="text-danger text-fs" *ngIf="registerForm.get('username')?.hasError('required')">
+                  {{'auth.User_Name_is_Required' | translate}}
+                </span>
+              </span>
+            </div>
+            <div class="form-group">
+              <input type="email" formControlName="email"  class="form-control"
+              placeholder="{{'auth.Email' | translate}}"
+              [ngClass]="{'is-invalid border-danger':isValid && registerForm.get('email')?.hasError('required')}"
+              >
+              <span *ngIf="registerForm.get('email')?.valid && registerForm.get('email')?.touched || isValid">
+                <span class="text-danger text-fs" *ngIf="registerForm.get('email')?.hasError('required')">
+                  {{'auth.Email_is_Required' | translate}}
+                </span>
+              </span>
+            </div>
+            <div class="form-group">
+              <input type="phone" formControlName="mobile"  class="form-control"
+              placeholder="{{'auth.Mobile' | translate}}"
+              [ngClass]="{'is-invalid border-danger':isValid && registerForm.get('mobile')?.hasError('required')}"
+              >
+              <span *ngIf="registerForm.get('mobile')?.valid && registerForm.get('mobile')?.touched || isValid">
+                <span class="text-danger text-fs" *ngIf="registerForm.get('mobile')?.hasError('required')">
+                  {{'auth.Mobile_is_Required' | translate}}
+                </span>
+              </span>
+            </div>
+            <div class="form-group">
+              <input type="password" formControlName="password" class="form-control"
+               placeholder="{{'auth.Password' | translate}}"
+               [ngClass]="{'is-invalid border-danger':isValid && registerForm.get('password')?.hasError('required')}">
+              <span *ngIf="registerForm.get('password')?.valid && registerForm.get('password')?.touched || isValid">
+                <span class="text-danger text-fs" *ngIf="registerForm.get('password')?.hasError('required')">
+                  {{'auth.Password_is_Required' | translate}}
+                </span>
+              </span>
+
+            </div>
+            <div class="form-group">
+              <button class="btn puprple_btn" type="submit">
+                {{'auth.SIGN_UP' | translate}}
+
+              </button>
+            </div>
+          </form>
+          <p class="or_block">
+            <span>
+              {{'auth.OR' | translate}}
+            </span>
+          </p>
+         <div class="or_option">
+            <p>
+              {{'auth.Sign_up_with_your_work_email' | translate}}
+            </p>
+            <a href="#" class="btn google_btn">
+              <img src="assets/images/portal/google.png" alt="image">
+              <span>
+                {{'auth.Sign_Up_with_Google' | translate}}
+              </span>
+            </a>
+            <p>
+              {{'auth.Already_have_an_account' | translate}}?
+            <a routerLink="/auth/login">
+              {{'auth.Sign_In_here' | translate}}
+            </a>
+            </p>
+         </div>
+        </div>
+       </section>
+    </div>
+
+  </div>
+
+
+
+</div>

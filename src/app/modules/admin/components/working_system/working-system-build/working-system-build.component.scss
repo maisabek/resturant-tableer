@@ -1,0 +1,46 @@
+@import '../../../../../shared/shared_variable.scss';
+
+.label-font-size{
+  font-size: 14px;
+}
+.table td{
+  font-size: 13px;
+}
+
+.title{
+  color: #374557;
+    white-space: nowrap;
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-weight: 500;
+    padding: 10px !important;
+}
+input[type="datetime-local"],input[type="time"]{
+  outline: none !important;
+}
+
+.text-validate{
+  font-size: 13px;
+}
+
+
+.dropdown-item,.fa-info-circl,
+.fa-edit{
+  cursor: pointer;
+  color: gray;
+  font-size: 14px;
+
+}
+.dropdown-menu{
+  background-color: white !important;
+  border: none;
+}
+.dropdown-item.active, .dropdown-item:active ,.dropdown-item:hover,
+.fa-info-circle:hover,.fa-edit:hover{
+  color: $dark-purple !important;
+  text-decoration: none;
+  background-color: white !important;
+}
+.table td,.table th{
+  text-align: center;
+ }

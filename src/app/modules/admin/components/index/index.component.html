@@ -1,0 +1,23 @@
+<!-- <app-preloader></app-preloader> -->
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #chatsideNav mode="over" closed class="example-sidenav justify-content-center text-center shadow-lg"
+    position="end" [fixedInViewport]="true">
+    <app-chat></app-chat>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-navbar [drawerIsOpened]="drawerIsOpened"></app-navbar>
+    <div class="d-flex position-relative">
+      <div class="side_container" [style.width]="_adminService.sideNavWidth">
+        <app-sidenav (drawerEvent)="drawer = $event"
+           (drawerIsOpenedEvent)="drawerIsOpenedfn($event)">
+        </app-sidenav>
+      </div>
+      <div class="components_container" [style.width]="_adminService.sideComponentWidth">
+        <div class="container mt-3">
+          <router-outlet></router-outlet>
+          <app-footer></app-footer>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

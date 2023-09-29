@@ -1,0 +1,90 @@
+
+<section class="bg-white p-4">
+<div class="d-flex justify-content-between w-100 align-items-center">
+  <h5 class="title">
+    {{'admin.Add_Tenant_Subscription' | translate}}
+  </h5>
+</div>
+
+<form id="AddTenantSubscription" [formGroup]="TenantSubscriptionForm" (ngSubmit)="AddOrEditTenantSubscription()">
+  <div class="row">
+    <div class="col-md-6 mt-3">
+      <mat-label>
+        {{'admin.numberOfBranches' | translate}}
+      </mat-label>
+      <mat-form-field class="w-100">
+
+        <input matInput type="number" formControlName="numberOfBranches">
+      </mat-form-field>
+      <span class="d-flex justify-content-end"
+        *ngIf="TenantSubscriptionForm.get('numberOfBranches')?.invalid && TenantSubscriptionForm.get('numberOfBranches')?.touched || TenantSubscriptionIsValid">
+        <span class="text-danger text-validate"
+          *ngIf="TenantSubscriptionForm.get('numberOfBranches')?.hasError('required')">
+          {{'admin.numberOfBranches_required' | translate}}*
+        </span>
+      </span>
+    </div>
+
+    <div class="col-md-6 mt-3">
+      <mat-label>
+        {{'admin.numberOfUsers' | translate}}
+      </mat-label>
+      <mat-form-field class="w-100">
+
+        <input matInput type="number" formControlName="numberOfUsers">
+      </mat-form-field>
+      <span class="d-flex justify-content-end"
+        *ngIf="TenantSubscriptionForm.get('numberOfUsers')?.invalid && TenantSubscriptionForm.get('numberOfUsers')?.touched || TenantSubscriptionIsValid">
+        <span class="text-danger text-validate"
+          *ngIf="TenantSubscriptionForm.get('numberOfUsers')?.hasError('required')">
+          {{'admin.numberOfUsers_required' | translate}}*
+        </span>
+      </span>
+    </div>
+
+    <div class="col-md-6 mt-3">
+      <mat-label>
+        {{'admin.numberOfMonths' | translate}}
+      </mat-label>
+      <mat-form-field class="w-100">
+
+        <input matInput type="number" formControlName="numberOfMonths">
+      </mat-form-field>
+      <span class="d-flex justify-content-end"
+        *ngIf="TenantSubscriptionForm.get('numberOfMonths')?.invalid && TenantSubscriptionForm.get('numberOfMonths')?.touched || TenantSubscriptionIsValid">
+        <span class="text-danger text-validate"
+          *ngIf="TenantSubscriptionForm.get('numberOfMonths')?.hasError('required')">
+          {{'admin.numberOfMonths_required' | translate}}*
+        </span>
+      </span>
+    </div>
+
+
+    <div class="col-md-6 mt-3">
+      <mat-label>
+        {{'admin.amount' | translate}}
+      </mat-label>
+      <mat-form-field class="w-100">
+        <input matInput type="number" formControlName="amount">
+      </mat-form-field>
+      <span class="d-flex justify-content-end"
+        *ngIf="TenantSubscriptionForm.get('amount')?.invalid && TenantSubscriptionForm.get('amount')?.touched || TenantSubscriptionIsValid">
+        <span class="text-danger text-validate"
+          *ngIf="TenantSubscriptionForm.get('amount')?.hasError('required')">
+          {{'admin.amount_required' | translate}}*
+        </span>
+      </span>
+    </div>
+
+    <div class="d-flex justify-content-end w-100 mt-4">
+      <button class="btn btn-info" form="AddTenantSubscription" type="submit">
+        {{'general.save' | translate}}
+      </button>
+      <button class="btn btn-danger mx-1" routerLink="/admin/tenant_subscription_list">
+        {{'general.Cancel' | translate}}
+      </button>
+    </div>
+  </div>
+</form>
+
+</section>

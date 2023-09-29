@@ -1,0 +1,15 @@
+<app-preloader></app-preloader>
+
+<div class="row bg-white py-3">
+  <div class="col-md-12 bg-white py-4 px-4 rounded">
+    <app-datatable
+      [service]="_ReservationService"
+      [columns]="columns"
+      [method]="'GetReservationList'"
+      [UpdateData]="{ isExist: false }"
+      [DeleteIsExist]="false"
+      [DetailsIsExist]="true"
+      (event)="eventHandler($event)">
+    </app-datatable>
+  </div>
+</div>

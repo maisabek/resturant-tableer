@@ -1,0 +1,35 @@
+.sideNav_icons{
+  background: #4527a0 !important;
+  width: 100%;
+  height: 100%;
+
+  svg path,svg g path{
+    fill: white !important;
+    color: white !important;
+  }
+  .btn:focus {
+    box-shadow: none !important
+  }
+}
+
+.dropdown-menu{
+  top: 118px !important;
+  left: 66px !important;
+  position: fixed !important;
+  background: #4527a0 !important;
+  font-size: 13px;
+}
+.dropdown-dashboard-menu{
+  top: 90px !important;
+}
+.dropdown-working-menu{
+  top: 162px !important;
+
+}
+.dropdown-item{
+  color: white !important;
+  border: none !important;
+}
+.dropdown-item:hover{
+  background-color: transparent;
+}

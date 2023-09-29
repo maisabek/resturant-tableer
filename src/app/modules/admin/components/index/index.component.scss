@@ -1,0 +1,38 @@
+.side_container{
+  z-index: 8;
+  margin-top: 5%;
+  direction: initial;
+}
+.components_container{
+  position: relative;
+  z-index: 2;
+  margin-top: 5%;
+  margin: 71px 1%;
+}
+.mat-drawer.mat-drawer-end{
+  width: 20%;
+}
+
+app-sidenav{
+  position: fixed;
+  width: inherit;
+}
+
+
+
+@media (min-width: 768px) and (max-width:991px){
+
+ .side_container{
+   margin-top: 70px;
+  }
+}
+
+@media (max-width: 767px ){
+  .side_container{
+    margin-top: 69px;
+    width: 82px !important;
+  }
+}
+
+
+

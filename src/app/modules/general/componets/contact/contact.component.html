@@ -1,0 +1,143 @@
+<div class="page_wrapper">
+  <app-preloader></app-preloader>
+  <app-navbar></app-navbar>
+  <div class="bred_crumb">
+    <div class="container">
+      <span class="banner_shape1"> <img src="assets/images/portal/banner-shape1.png" alt="image" > </span>
+      <span class="banner_shape2"> <img src="assets/images/portal/banner-shape2.png" alt="image" > </span>
+      <span class="banner_shape3"> <img src="assets/images/portal/banner-shape3.png" alt="image" > </span>
+
+      <div class="bred_text">
+        <h1>
+          {{'portal.Contact_us' | translate}}
+        </h1>
+        <p>
+          {{'portal.If_you_have_an_query_please_get_in_touch_with_us_we_will_revert_back_quickly' | translate}}
+        </p>
+        <ul>
+          <li><a routerLink="">
+            {{'portal.Home' | translate}}
+
+          </a></li>
+          <li><span>»</span></li>
+          <li><a>
+            {{'portal.Contact_us' | translate}}
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <section class="contact_page_section">
+    <div class="container">
+        <div class="contact_inner">
+            <div class="contact_form">
+              <div class="section_title">
+                  <h2>
+                    {{'portal.Leave_a' | translate}}
+                    <span>
+                      {{'portal.message' | translate}}
+                    </span>
+                  </h2>
+                  <p>
+                    {{'portal.Fill_up_form_below_our_team_will_get_back_soon' | translate}}
+                  </p>
+              </div>
+                <form>
+                  <div class="form-group">
+                      <input type="text" placeholder="{{'auth.name' | translate}}" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" placeholder="{{'auth.Email' | translate}}" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" placeholder="{{'portal.Company_Name' | translate}}" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <select class="form-control">
+                        <option value="">
+                          {{'portal.Country' | translate}}
+                        </option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <input type="text" placeholder="{{'auth.Mobile' | translate}}" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" placeholder="{{'portal.Website' | translate}}" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <textarea class="form-control" placeholder="{{'portal.Your_Message' | translate}}"></textarea>
+                  </div>
+                  <div class="form-group term_check">
+                    <input type="checkbox" id="term">
+                    <label for="term">
+                      {{'portal.I_agree_to_receive_emails_newsletters_and_promotional_messages' | translate}}
+                    </label>
+                  </div>
+                  <div class="form-group mb-0">
+                    <button type="submit" class="btn puprple_btn">
+                      {{'portal.SEND_MESSAGE' | translate}}
+                    </button>
+                  </div>
+                </form>
+            </div>
+            <div class="contact_info">
+                <div class="icon">
+                  <img src="assets/images/portal/contact/contact_message_icon.png" alt="image">
+                </div>
+                <div class="section_title">
+                  <h2>
+                    {{'portal.Have_any' | translate}}
+                    <span>{{'portal.question' | translate}}?</span></h2>
+                  <p>
+                    {{'portal.If_you_have_any_question_feel_free_to_contact_us' | translate}}
+                  </p>
+                </div>
+
+                <ul class="contact_info_list">
+                  <li>
+                    <div class="img">
+                      <img src="assets/images/portal/contact/mail_icon.png" alt="image">
+                    </div>
+                    <div class="text">
+                      <span>
+                        {{'portal.Email_Us' | translate}}
+                      </span>
+                      <a href="mailto:example@gmail.com">info@tableer.co</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="img">
+                      <img src="assets/images/portal/contact/call_icon.png" alt="image">
+                    </div>
+                    <div class="text">
+                      <span>
+                        {{'portal.Call_Us' | translate}}
+                      </span>
+                      <a href="tel:+1(888)553-46-11">+966 525531643</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="img">
+                      <img src="assets/images/portal/contact/location_icon.png" alt="image">
+                    </div>
+                    <div class="text">
+                      <span>
+                        {{'portal.Visit_Us' | translate}}
+                      </span>
+                      <p>
+                        {{'portal.Riyadh_Saudi_Arabia' | translate}}
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </section>
+
+<app-footer></app-footer>
+
+</div>

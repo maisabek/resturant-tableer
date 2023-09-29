@@ -1,0 +1,53 @@
+@import '../../../../shared/shared_variable.scss';
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover
+{
+  border-color: transparent !important;
+}
+.nav-tabs .nav-link{
+  font-size: 13px;
+}
+.nav-tabs .nav-link.active{
+  border: none !important;
+  border-bottom:2px solid #4527a0 !important ;
+}
+
+.statictics_chart{
+  font-size: 11px;
+}
+.progress-bar {
+  border-radius: 0.75rem;
+}
+
+.icon-box.icon-box-lg {
+  height: 65px;
+  width: 65px;
+  line-height: 65px;
+}
+
+.icon-box {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 0.75rem;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+svg path{
+  fill: #4527a0;
+}
+.card-menu span{
+  font-size: 13px;
+  color: grey;
+}
