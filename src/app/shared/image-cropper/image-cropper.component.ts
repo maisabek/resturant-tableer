@@ -28,7 +28,6 @@ export class ImageCropperComponent {
           crop: () => {
               const canvas = this.cropper.getCroppedCanvas();
               this.imageDestination = canvas.toDataURL("image/png");
-            
            }
       });
   }
